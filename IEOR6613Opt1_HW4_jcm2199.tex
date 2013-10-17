@@ -1,0 +1,92 @@
+\documentclass{article}
+
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\begin{document}
+\title{IEOR 6613 - Optimization I\\ HW 4:  4.4, 4.7, 4.9, 4.12, 4.14, 4.20, 4.26}
+
+\author{John Min\\ jcm2199}
+\date{October 9, 2013}
+\maketitle
+\pagebreak
+
+\section*{4.4}
+Let \textbf{A} be a symmetric square matrix.  Consider the linear programming problem
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} && \mathbf{c'x} \\
+& \text{subject to} &&  \mathbf{Ax \geq c} \\
+& & &\mathbf{x \geq 0}
+\end{aligned}
+\end{equation*}
+Prove that if $\mathbf{x^*}$ satisfies $\mathbf{Ax^* = c \text{ and } x^* \geq 0}$, then $\mathbf{x^*}$ is an optimal solution.\\
+
+\noindent
+Suppose $\mathbf{Ax^* = c \text{ and } x^* \geq 0}$.  Let's formulate the dual:
+\begin{equation*}
+\begin{aligned}
+& \text{maximize} && \mathbf{p'c} \\
+& \text{subject to} &&  \mathbf{p'A \leq c'} \\
+& & &\mathbf{p \geq 0}
+\end{aligned}
+\end{equation*}
+
+\noindent
+$\mathbf{p'A \leq c'} \Rightarrow \mathbf{p'Ax^* \leq c'x^*} \Rightarrow \mathbf{p'c \leq c'x^*}$ and since A is square and symmetric, we have $\mathbf{c'p \leq c'x^*}$.\\
+Since the dual's objective is to maximize $\mathbf{p'c}$, set $\mathbf{p = x^*}.$  Since $\mathbf{x^* \geq 0}$, $\mathbf{p \geq 0}$.  $\mathbf{x^*}$ and $\mathbf{p}$ are feasible solutions to the primal and dual and $\mathbf{p'b = c'x}$ where $\mathbf{b=c}$ in this problem according to standard notation.  By Corollary 4.2, $\mathbf{x^*}$ and $\mathbf{p}$ are optimal solutions to the primal and dual, respectively.  
+
+\section*{4.7 (Duality in piecewise linear convex optimization)}
+Consider the problem of minimizing max$_{i=1,\ldots, m}$ ($\mathbf{a_i'x} - b_i$) over all $\mathbf{x} \in \mathbb{R}^n$.  Let $v$ be the value of the optimal cost, assumed finite.  Let $\mathbf{A}$ be the matrix with rows $\mathbf{a_1, \ldots, a_m}$, and let $\mathbf{b}$ be the vector with components $b_1, \ldots, b_m$.  \\
+
+\noindent
+\textbf{(a)} Consider any vector $\mathbf{p} \in \mathbb{R}^m$ that satisfies $\mathbf{p'A = 0', p \geq 0}$ and $\sum_{i=1}^m p_i = 1$.  Show that $\mathbf{-p'b} \leq v$. \\
+
+
+\noindent
+\textbf{(b)}  In order to obtain the best possible lower bound of the form considered in part (a), we form the linear programming problem
+\begin{equation*}
+\begin{aligned}
+& \text{maximize} && \mathbf{-p'b} \\
+& \text{subject to} &&  \mathbf{p'A = 0'} \\
+& \text{subject to} &&  \mathbf{p'e = 1} \\
+& & &\mathbf{p \geq 0}
+\end{aligned}
+\end{equation*}
+
+\noindent
+Formulate the dual:
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} && v \\
+& \text{subject to} &&  \mathbf{p'A = 0'} \\
+& \text{subject to} &&  \mathbf{p'e = 1} \\
+& & &\mathbf{x} free
+\end{aligned}
+\end{equation*}
+
+\section*{4.12 (Degeneracy and uniqueness)}
+Consider a general linear programming problem and suppose that we have a nondegenerate basic feasible solution to the primal.  Show that the complementary slackness conditions lead to a system of equations for the dual vector that has a unique solution.\\
+
+\noindent
+Let $\mathbf{x} \in \mathbb{R}^n$, be a nondegenerate basic feasible solulution to the primal.  Therefore, $\mathbf{x}$ satisfies exactly $n$ linearly independent constraints as well as all inequality constraints.\\
+The complementary slackness conditions state the following:\\
+
+\begin{equation*}
+\begin{aligned}
+u_i & = & p_i (\mathbf{a_i'x} - b_i) & = 0 \; \; \forall i \\
+v_i & = & (c_j - \mathbf{p' A_j}) x_j & = 0 \; \; \forall j
+\end{aligned}
+\end{equation*}
+
+Let's construct the primal and dual 
+
+\section*{4.26} 
+Let $\mathbf{A}$ be a given matrix.  Show that exactly one of the following alternatives must hold.\\
+\textbf{(a)} There exists some $\mathbf{x \neq 0}$ such that $\mathbf{Ax = 0, x \geq 0}$.\\
+\textbf{(b)} There exists some \textbf{p} such that $\mathbf{p'A > 0}$. \\
+
+
+
+\end{document}
