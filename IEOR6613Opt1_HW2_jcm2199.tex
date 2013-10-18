@@ -1,0 +1,151 @@
+\documentclass{article}
+
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\begin{document}
+\title{IEOR 6613 - Optimization I\\ HW 2:  2.16, 2.17, 2.22, 3.1, 3.3, 3.9, 3.10}
+
+\author{John Min\\ jcm2199}
+\date{October 1, 2013}
+\maketitle
+\pagebreak
+
+
+\section*{2.16}
+Consider the set $P = \{x \in \mathbb{R}^n \, |\, \mathbf{Ax \leq b}, x_1 = ... = x_{n-1} = 0, 0 \leq x_n \leq 1 \}$.  \\
+Could this be the feasible set of a problem in standard form? \\
+
+\noindent
+This question is a bit vague, so I will answer it in two ways:  Yes, but in reality, no...  \\
+
+\noindent
+(i) Yes, consider the addition of a slack variable, $x_{n+1}$ to P in standard form. \\  Define P' = $\{x \in \mathbb{R}^{n+1} \, | \, x_1 + ... + x_{n-1} = 0, x_n + x_{n+1} = 1, \mathbf{x} \geq 0 \}$.  \\
+Rewrite P' into standard form: $\{x \in \mathbb{R}^{n+1} \, | \, \mathbf{Ax = b}, \mathbf{x} \geq 0 \}$ where $\mathbf{A} = \begin{pmatrix}
+	1 & 1 & ... & 1 & 0 & 0 \\
+	0 & 0 & ... & 0 & 1 & 1 
+	\end{pmatrix}
+$, $\mathbf{b} = \begin{pmatrix}
+	0\\
+	1
+	\end{pmatrix}
+$.\\
+In this case, $P \subset P'$, where P is the feasible set of the standard form problem as formulated above.  Since $x_n + x_{n+1} = 1$, we have this continuous line segment to be the feasible set.  The problem with this answer is that we are in a subspace of $\mathbb{R}^{n+1}$ instead of $\mathbb{R}^n$ and the feasible set $x_n + x_{n+1} = 1$ is not identical to $0 \leq x_n \leq 1$, which rests on an axis.
+This leads directly to my alternative answer...\\
+
+\noindent 
+(ii) But actually, no.  If the feasible set must be in the form as described in the question, we cannot have such a line segment being the feasible set: $0 \leq x_n \leq 1$.  In the standard form, we are dealing with a minimization problem.  With the zero vector already in the set, the optimal value of the LP is zero.  Given a matrix \textbf{A} and vector \textbf{b}, where $A \in \mathbb{R}^{m \times n}, \, b \in \mathbb{R}^m$, let $Ax = b$ look like this:  $A = [A' \, | \, a], \, x = [0, 0, ..., 0, x_n]^\top, b = [b_1, ..., b_m]\top$.  Given A and b, with $x^*_1 = ... = x^*_{n-1} = 0$, the solution set $x^*$ for $\mathbf{Ax = b}$ is such that $a' x_n = b$, which is an equality constraint.  Hence, $x^*_n$ is not a bounded continuous subspace of $\mathbb{R}$.
+
+\section*{2.17}
+Consider the set $P = \{x \in \mathbb{R}^n \, | \, \mathbf{Ax \leq b}, x \geq 0 \}$ and a nondegenerate basic feasible solution $x^*$.  We introduce slack variables $z$ and construct a corresponding polyhedron $Q = \{\mathbf{(x,z)} \in \mathbb{R}^{m \times n} \, | \, \mathbf{Ax + z = b, x \geq 0, z \geq 0}\}$ in standard form.  Show that ($x^*, \, b-Ax^*$) is a nondegenerate basic feasible solution for the new polyhedron.\\
+
+\noindent
+By Exercise 2.5, we showed that the two polyhedrons P and Q are isomoprhic, meaning that there is an affine mapping between the two and hence, there is a one-to-one correspondence between the points of each, nonetheless, extreme points (introducing slack variables leads to an isomorphic polyhedron).  Since $x^*$ is a BFS, then it is clear that $(x^*, b-Ax^*)$ is also a BFS.  Now, we need to show that if $x^*$ is nondegenerate, then the corresponding BFS is also nondegenerate.  This is not obvious from here because degeneracy is representation dependent.\\
+
+%\noindent
+%Since $x^*$ is a nondegenerate BFS, there are exactly n linearly independent active constraints, where all equality constraints are satisfied.  Suppose $k < n$ constraints are active such that there are k components where $a_i' x = b_i$ from the inequality form $\mathbf{Ax \leq b}$.  Then, there exists exactly $n-k$ constraints of form $x_i \geq 0$ active, which is equivalent to saying we have $k$ nonzero and $n-k$ zero variables.  In other words, the $k$ nonzero variables are our basic variables while the $n-k$ zero variables are our nonbasic ones.\\
+
+\noindent
+Let us look at the standard form representation with slack vector z:
+$\mathbf{Ax + z} = [\mathbf{A; I}] \begin{pmatrix} 
+								\mathbf{x} \\ \mathbf{z}
+								\end{pmatrix}
+								= \mathbf{b}$.\\
+Theorem 2.5 states that we can assume full row rank on A without loss of generality.  
+Let $C := [A; I]$, $y = [x \, z]^\top$.  Assuming A is a full rank matrix with row rank m, adding the identity matrix, $I_m$ to the right side of A to form C does not change the rank of C.  The rank of C is $m$.  The number of basic variables is $m$ meaning that there are exactly $n-m$ nonbasic variables.  Therefore, $(\mathbf{x^*, b-Ax^*})$ is not only a BFS but it is also nondegenerate for the standard form polyhedron.\\ 
+
+\pagebreak
+\section*{2.22}
+Let P and Q be polyhedra in $\mathbb{R}^n$.  Let $P + Q = \{x + y \, | \, x \in P, y \in Q\}$.\\
+
+\noindent \textbf{(a)} Show that $P + Q$ is a polyhedron.\\
+
+\noindent
+For nonempty, bounded polyhedra P and Q, by Theorem 2.9, they are the convex hull of their respective extreme points.  The Minkowsi sum of two polytopes P and Q is the convex hull of the pairwise sums of vertices of P and Q, respectively.  Corollary 2.2 (Goldfarb) states that a polyhedron has only a finite number of vertices.  By Corollary 2.6, the convex hull of a finite number of vectors is a polyhedron.  Hence, P + Q in this case is a polyhedron.\\
+
+\noindent
+Let us take a more general approach:  Consider $P \times Q = \{(x,y): x \in P, y\in Q \}$.  $P \times Q, P \times Q \subset \mathbb{R}^{n \times n}$ is clearly a polyhedron as we can write out separate inequalities for x and y.  Let us define a linear transformation $T: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}^n$, and $T(x,y) \rightarrow x + y$.  Corollary 2.4 states that the image of a polyhedron under a linear mapping is also a polyhedron.  Therefore, $T(P \times Q) = P + Q$ is a polyhedron, where $P + Q \in \mathbb{R}^n$.\\
+
+\noindent \textbf{(b)} Show that every extreme point of $P + Q$ is the sum of an extreme point of P and an extreme point of Q.\\
+
+\noindent
+Let $x^* \in P + Q, y^* \in P,  z^* \in Q.$  Suppose $x^* = y^* + z ^*$.\\
+Without loss of generality, assume that $y^*$ is not an extreme point, which implies that $\exists \lambda \in [0,1]$ such that $y^* = \lambda a + (1-\lambda) b$ for some $a,b \in P$.  Then, $x^* = \lambda (a + z^*) + (1 - \lambda)(b+ z^*) \Rightarrow x^*$ not an extreme point.\\
+
+\section*{3.1 (Local minima of convex functions)} 
+
+Let $f: \mathbb{R}^n \Rightarrow \mathbb{R}^n$ be a convex function and let S $\subset \mathbb{R}^n$ be a convex set.  Let $x^*$ be an element of S.  Suppose that $x^*$ is a local optimum for the problem of minimizing $f(x)$ over S, that is, there exists some $ \epsilon > 0$ such that $f(x^*) \leq f(x)$ for all $x \in S$ for which $||x-x^*|| \leq \epsilon$.  Prove that $x^*$ is globally optimal; that is $f(x^*) \leq f(x)$ for all $x \in S$.\\
+
+\noindent
+Suppose there exists a $y \in S$ such that  $f(y) < f(x^*)$.  Hence, x is not globally optimal for S.\\
+Let $x = \lambda y + (1-\lambda) x^*$, with $\lambda = \frac{\epsilon}{2 ||y - x^*||}$ (Assume $\epsilon < 2 ||y-x^*||$ and we have $0 < \lambda < 1$.)  x is a convex combination of two feasible points since $x^*, y \in S$; therefore, it is also feasible.  Then, we have $||x - x^*|| \leq \frac{\epsilon}{2}$ and $f(x) \leq \lambda f(y) + (1-\lambda) f(x^*) < f(x^*)$.  This is a contradiction:  x is in the neighborhood of $x^*$ and falsifies our assumption that $x^*$ is a local optimum.  By definition of local optimalty, $ \exists \, \epsilon > 0$ such that $||x-x^*|| \leq \epsilon \Rightarrow f(x) \leq f(x^*).$  Therefore, given a convex function and set, a local minimum is a global minimum.
+
+
+\section*{3.3}
+
+Let $x$ be an element of the standard for polyhedron $P = \{x \in \mathbb{R}^n | Ax = b, x \geq 0 \}$.  Prove that a vector $d \in \mathbb{R}^n$ is a feasible direction at $x$ if and only if $Ad=0$ and $d_i \geq 0$ for every i such that $x_i = 0$.\\
+
+\noindent
+$(\Rightarrow)$
+Suppose d is a feasible direction at $x$.  By definition, $\exists \, \theta > 0$ s.t. $x + \theta d \in P$.  Thus, for some $\theta > 0, A(x + \theta d) = b \Rightarrow Ax + \theta Ad = b.$  Since x is feasible and $\theta > 0$, $Ax = b$, and $Ad = 0$, respectively.  There is also the non-negativity constraint of $\mathbf{x} \geq 0$.  Now, define $x' := x + \theta d$ where $x' \in \mathbb{R}^n$.  For $x' \in P,$ and a given scalar $\theta > 0$, $d_i \geq 0$ for every i such that $x_i = 0$.  Else, the non-negativity constraint does not hold, meaning that x' is not in P and d would not be a feasible direction.\\
+
+\noindent
+$(\Leftarrow)$
+Let $Ad = 0$ and $d_i \geq 0 $ for each i such that $x_i = 0$.  Define $x' := x + \theta d$.  Given any scalar $\theta > 0$, $A(x + \theta d) = b \Rightarrow Ax' = b.$  If $x \geq 0$, then, $x' \geq 0$ as well.  Therefore, d is a feasible direction.  
+
+
+\section*{3.9 (Necessary and sufficient conditions for  unique optimum)}
+Consider a linear programming problem in standard form and suppose that $\mathbf{x^*}$ is an optimal basic feasible solution.  Consider an optimal basis associated with $\mathbf{x^*}$.  Let $B$ and $N$ be the set of basic and nonbasic indices, respectively.  Let $I$ be the set of nonbasic indices $i$ for which the corresponding reduced costs $c_i$ are zero.
+
+\noindent \textbf{(a)}
+Show that if $I$ is empty, then $\mathbf{x^*}$ is the only optimal solution.\\
+
+\noindent 
+Since $x^*$ ix an optimal solution, all of its corresponding reduced costs, $c_i \geq 0$.  I ,the set of nonbasic indices i for which the corresponding reduced costs are zero, is empty.  Thus, traversing an edge would result in an increase to the cost function due to the convexity of the cost function, c, and the feasible set space, S.\\
+
+\noindent
+Suppose there also exists another optimal BFS $y^* \in S$ such that $c'x^* = c'y^*$.  Then, by the convexity of c and S, there exists a feasible direction $d = y^* - x^*$ for which $z = c'x^* + \lambda d$, $z \in S$ and $c'z = c'x^* = c'y*$.  As aforementioned, there does not exist a positive scalar $\lambda$ for which $c'(x^* +  \lambda d_i) \leq c'x^*$, where $d_i$ represents any basic feasible direction at $x^*$.  This is a contradiction.  The existence of a non-unique optimal solution would require that c be a concave function.  Therefore, $x^*$ is in fact a unique opimal BFS to the LP.\\
+
+
+\noindent \textbf{(b)} 
+Show that $\mathbf{x^*}$ is the unique optimal solution if and only if the following linear programming problem has an optimal value of zero:\\
+
+\begin{equation*}
+\begin{aligned}
+& \text{maximize} &  \sum_{i \in I} x_i \\
+& \text{subject to} &  \mathbf{Ax = b}\\
+& & x_i = 0, i \in N \cap I \\
+& & x_i \geq 0, i \in B \cup I
+\end{aligned}
+\end{equation*}
+\\
+ 
+\noindent $(\Rightarrow)$
+Let us assume that we start at a basic feasible solution, $x^*$.  Suppose the optimal value of the above LP is zero.  Then, there does not exist a basic feasible solution such that $x_i >0$ for some $i \in I$, where a nonbasic reduced cost, $c_i = 0$.  All such $x_i = 0$.  Thus, we cannot traverse in the direction of a basis vector indexed by $i \in I$, or we leave the feasible set.  Pivoting in the direction of bases where the associated reduced cost $c_i < 0$ leads to increasing the cost function.  Thus, our basic feasible solution is the unique optimal solution to the LP.  Moving away from $\mathbf{x^*}$ either leads to leaving the feasible set or increasing the objective value function.\\
+
+\noindent $(\Leftarrow)$
+Suppose $\mathbf{x^*}$, a basic feasible solution, is the unique optimal solution for an LP.  In the case that all of the nonbasic reduced costs are strictly positive, I is empty since I indexes only nonbasic variables for corresponding zero reduced costs.  Clearly then, the second LP's optimal value is zero as we are maximizing $\sum_{i \in I} x_i$ on an empty set ($\{x_i \} = \varnothing$).  \\
+
+\noindent
+In the case that there exist nonbasic reduced costs of zero, by moving in the direction of that basis, we depart from the feasible set.  Otherwise, we would be pivoting toward a different optimal solution, contradicting the uniqueness of $\mathbf{x^*}$ as an optimal BFS.  The set, $\{x_i\}$, where $i \in I$ must remain zero for $\mathbf{Ax=b}$ to hold.  Therefore, the optimal value of the second LP is zero.  
+
+\pagebreak
+\section*{3.10}
+Show that if $n - m = 2$, then the simplex method will not cycle, no matter which pivoting rule is used.\\ 
+
+\noindent
+Let us assume that the LP is represented in standard form as follows: $P = \{\mathbf{x} \in \mathbb{R}^n \, | \mathbf{Ax = b, x \geq = 0} \}$.  $\mathbf{A}$ has rank $m$ with $m = n+2$.  Since $m=n-2$, there are only 2 active constraints in the nondegenerate case:  each basic feasible solution is defined by the intersection of 2 constraints.  It is clear in the nondegenerate case that the simplex will terminate.  Theorem 3.3 states that given a nonempty feasible set and assuming that every BFS is nondegenerate, the simplex method terminates in a finite number of itearations, either having found the optimal solution or that the problem is unbounded.\\
+
+\noindent
+Assume the presence of degeneracy.  Now, a change of basis may keep us at the same BFS with no cost reduction.  At a high level, the simplex method pivots from one vertex of the feasible set to another, reducing cost until the optimal solution is reached.  Assume that we start at any arbitrary BFS.  Since $m = n-2$, the number of nonbasic (NB) variables is 2.\\
+
+\noindent
+In the first iteration, let us assume that both NB variables reduce cost while pivoting on a feasible direction.  Choose one direction at random.  There exists a path between any two extreme points in a convex polyhedron.  Eventually, we reach an optimal solution by pivoting on cost-reducing feasible directions.  \\
+
+\noindent
+Generally, at each iteration, pivot generation is irrelevant because there is at most one pivot that can be made, and only if the reduced cost for that feasible direction is negative.  One of the two nonbasis vectors must enter the basis (and swap one of the basis vectors into the set of nonbasis vectors), but we do not choose the direction that returns us to the previous vertex;  that direction would increase cost.  With only one basis vector to choose from, there are only two options at each iteration:  (i) stop becasue there only exists feasible directions that increase cost and hence, we have reached an optimal solution, or (ii) pivot on a NB variable towards an unvisited vertex of the polyhedron that reduces cost. Hence, pivot generation is irrelevant because there is one pivot that can be made and it is only made for a negative reduced cost.  \\
+
+
+
+\end{document}

@@ -1,0 +1,81 @@
+\documentclass{article}
+
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\begin{document}
+\title{IEOR 6613 - Optimization I\\ HW 3:  3.12, 3.15, 3.18, 3.24, 3.25, 3.26, 3.27}
+
+\author{John Min\\ jcm2199}
+\date{October 9, 2013}
+\maketitle
+\pagebreak
+
+\section{3.12}
+\textbf{(a)} LP in standard form with initial BFS (0,0,2,6):\\
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} & -2x_1 - x_2 &\\
+& \text{subject to} &  x_1 - x_2 +x_3 + \; & = 2 \\
+& 			&         x_1 + x_2 + \; + x_4 & = 6 \\
+& 			&	x_1, x_2, x_3, x_4 & \geq 0
+\end{aligned}
+\end{equation*}
+
+\noindent
+\textbf{(b)} Full Tableau Simplex Implementation:\\
+
+
+\section*{3.15 (Perturbation approach to lexicography)}
+Consider a standard form problem, under the usual assumption that the rows of \textbf{A} are linearly independent.  Let $\epsilon$ be a scalar and define 
+\begin{equation*}
+\mathbf{b}(\epsilon) = \mathbf{b} + 
+     \begin{bmatrix}
+      \epsilon \\
+      \epsilon^2\\
+       \vdots \\
+       \epsilon^m 
+	\end{bmatrix}
+\end{equation*} \\
+
+\noindent 
+For every $\epsilon > 0$, we define the $\epsilon$-perturbed problem to be the linear programming problem obtained by replacing \textbf{b} with $\mathbf{b}(\epsilon)$.
+
+
+\section*{3.18} Consider the simplex method applied to a standard form problem and assume that the rows of the matrix \textbf{A} are linearly indepednent.  For each of the statements that follow, give either a proof or a counterexample.\\
+
+\noindent
+\textbf{(a)} An iteration of the simplex method may move the feasible solution by a positive distance while leaving the cost unchanged. \\
+
+\noindent
+False.  Since A has full rank, every BFS is nondegenerate.  The cost of every successive BFS visited by the simplex is strictly less than the cost of the previous one because the algorithm is moving along a feasible direction \textbf{d} such that $\mathbf{c\top d < 0}$.  The basic direction chosen is given by the index $j$ for which $\bar{c}_j < 0$ where $j \in N$. Otherwise, the algorithm would have terminated.  The only way the simplex iterates and leaves the cost unchanged is in the case that cycling occurs; in this case, we remain at the same BFS and thus, the simplex is not moving the feasible solution by a positive distance, or at all. \\
+
+\noindent
+\textbf{(b)} A variable that has just left the basis cannot reenter in the very next iteration. \\
+
+
+\noindent
+\textbf{(c)} A variable that has just entered the basis cannot leave in the very next iteration.\\
+
+\noindent
+False.  Consider a square with vertices (0,0), (0,1), (1,0), (1,1) as the polyhedron that defines the feasible set of \textbf{x} that satisfies \textbf{Ax = b}, our standard form LP.  2 basic, 2 nonbasic  \\
+
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} & -x_1 - x_2 &\\
+& \text{subject to} &  x_1 + \;x_3 \; & = 1 \\
+& 			&        x_2 \; + x_4 & = 1 \\
+& 			&	x_1, x_2, x_3, x_4 & \geq 0
+\end{aligned}
+\end{equation*}
+
+\noindent
+\textbf{(d)} If there is a nondegenerate optimal basis, then there exists a unique optimal basis.\\
+
+\noindent
+\textbf{(e)} If \textbf{x} is an optimal solution found by the simplex method, no more than $m$ of its components can be positive, where $m$ is the number of equality constraints.\\
+
+
+
+\end{document}

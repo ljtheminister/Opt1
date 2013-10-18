@@ -1,0 +1,30 @@
+\documentclass{report}
+
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[chapter] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} % definition numbers are dependent on theorem numbers
+
+\begin{document}
+\title{IEOR 6613 - Optimization I Notes}
+\author{John Min}
+\maketitle
+
+\chapter{}
+\chapter{}
+\chapter{The simplex method}
+
+\section{Optimality conditions}
+
+\begin{defn}
+Let \textbf{x} be an element of polyhedron $P$.   A vector $\mathbf{d} \in \mathbb{R}^n$ is said to be a \textbf{feasible direction} at \textbf{x}, if there exists a positive scalar $\theta$ for which $\mathbf{x} + \theta \mathbf{d} \in P$.
+\end{defn}
+
+
+
+\end{document}
