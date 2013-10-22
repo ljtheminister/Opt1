@@ -1,13 +1,18 @@
 \documentclass{article}
 
 \usepackage[margin=1.0in]{geometry}
+<<<<<<< HEAD
 \usepackage{amssymb}
 \usepackage{amsmath}
+=======
+
+>>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
 
 \begin{document}
 \title{IEOR 6613 - Optimization I\\ HW 2:  2.16, 2.17, 2.22, 3.1, 3.3, 3.9, 3.10}
 
 \author{John Min\\ jcm2199}
+<<<<<<< HEAD
 \date{October 1, 2013}
 \maketitle
 \pagebreak
@@ -145,6 +150,29 @@ In the first iteration, let us assume that both NB variables reduce cost while p
 
 \noindent
 Generally, at each iteration, pivot generation is irrelevant because there is at most one pivot that can be made, and only if the reduced cost for that feasible direction is negative.  One of the two nonbasis vectors must enter the basis (and swap one of the basis vectors into the set of nonbasis vectors), but we do not choose the direction that returns us to the previous vertex;  that direction would increase cost.  With only one basis vector to choose from, there are only two options at each iteration:  (i) stop becasue there only exists feasible directions that increase cost and hence, we have reached an optimal solution, or (ii) pivot on a NB variable towards an unvisited vertex of the polyhedron that reduces cost. Hence, pivot generation is irrelevant because there is one pivot that can be made and it is only made for a negative reduced cost.  \\
+=======
+\maketitle
+
+\section{2.16}
+Consider the set {$x \in \mathbf{R}^n | Ax \leq b, x \geq 0$} 
+
+\section{2.17}
+Consider the set {$x \in \mathbf{R}^n | Ax \leq b, x \geq 0$} and a nondegenerate basic feasible solution $x^*$.  We introduce slack variables $z$ and construct a corresponding polyhedron {$\mathbf{(x,z) | Ax + z = b, x \geq 0, z \geq 0}$} in standard form.  Show that ($x^*, b-Ax^*$) is a nondegenerate basic feasible solution for the new polyhedron.
+
+
+
+\section{2.22}
+Let P and Q be polyhedra in $\mathbf{R}^n$.  Let $P + Q = {x + y | x \in P, y \in Q}$.\\
+
+\noindent \textbf{(a)} Show that $P + Q$ is a polyhedron.\\
+
+\noindent \textbf{(b)} Show that every extreme point of $P + Q$ is the sum of an extreme point of P and an extreme point of Q.\\
+\section{3.1}
+\section{3.3}
+\section{3.9}
+\section{3.10}
+
+>>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
 
 
 

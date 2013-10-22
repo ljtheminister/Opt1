@@ -1,9 +1,14 @@
 \documentclass{article}
 
 \usepackage[margin=1.0in]{geometry}
+<<<<<<< HEAD
 \usepackage{amssymb, amsmath, parallel, mathtools}
 
 
+=======
+\usepackage{amssymb}
+\usepackage{amsmath}
+>>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
 
 \begin{document}
 \title{IEOR 6613 - Optimization I\\ HW 4:  4.4, 4.7, 4.9, 4.12, 4.14, 4.20, 4.26}
@@ -67,6 +72,7 @@ Formulate the dual:
 \end{aligned}
 \end{equation*}
 
+<<<<<<< HEAD
 \section*{4.9 (Back-propogation of dual variables in a multiperiod problem)}
 A company makes a product that can be either sold or stored to meet future demand.  Let $t = 1, \ldots, T$ denote the periods of the planning horizon.  Let $b_t$ be the production volume during period $t$, which is assumed to be known in advance.  During each period $t$, a quantity $x_t$ of the product is sold, at a unit price of $d_t$.  Furthermore, a quantity $y_t$ can be sent to long-term storage, at a unit transportation cost of $c.$  Alternatively, a quantity $w_t$ can be retrieved from storage, at zero cost.  We assume that when the product is prepared for long-term storage, it is partly damaged, and only a fraction $f$ of the total survives.  Demand is assumed to be unlimited.  The main question is whether it is profitable to store some of the production in anticipation of higher prices in the future.  This leads us to the following problem, where $z_t$ stands for the amount kept in long-term storage, at the end of period $t$: \\
 
@@ -87,15 +93,22 @@ A company makes a product that can be either sold or stored to meet future deman
 \noindent \textbf{(c)} Explain how the result in part (b) can be used to compute an optimal solution to the original problem.  Primal and dual nondegeneracy can be assumed. \\
 
 
+=======
+>>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
 \section*{4.12 (Degeneracy and uniqueness)}
 Consider a general linear programming problem and suppose that we have a nondegenerate basic feasible solution to the primal.  Show that the complementary slackness conditions lead to a system of equations for the dual vector that has a unique solution.\\
 
 \noindent
+<<<<<<< HEAD
 
+=======
+Let $\mathbf{x} \in \mathbb{R}^n$, be a nondegenerate basic feasible solulution to the primal.  Therefore, $\mathbf{x}$ satisfies exactly $n$ linearly independent constraints as well as all inequality constraints.\\
+>>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
 The complementary slackness conditions state the following:\\
 
 \begin{equation*}
 \begin{aligned}
+<<<<<<< HEAD
 p_i (\mathbf{a_i'x} - b_i) & = 0 \; \; \; \forall i, \\
 (c_j - \mathbf{p' A_j}) x_j & = 0 \; \; \; \forall j.
 \end{aligned}
@@ -219,6 +232,20 @@ $(\mathbf{(a) \Rightarrow \neg (b)})$ \\
 Suppose there exists some $\mathbf{x \neq 0}$ such that $\mathbf{Ax = 0, x \geq 0} \Rightarrow $  the columns of $\mathbf{A}$ are linearly dependent.
 \noindent
 
+=======
+u_i & = & p_i (\mathbf{a_i'x} - b_i) & = 0 \; \; \forall i \\
+v_i & = & (c_j - \mathbf{p' A_j}) x_j & = 0 \; \; \forall j
+\end{aligned}
+\end{equation*}
+
+Let's construct the primal and dual 
+
+\section*{4.26} 
+Let $\mathbf{A}$ be a given matrix.  Show that exactly one of the following alternatives must hold.\\
+\textbf{(a)} There exists some $\mathbf{x \neq 0}$ such that $\mathbf{Ax = 0, x \geq 0}$.\\
+\textbf{(b)} There exists some \textbf{p} such that $\mathbf{p'A > 0}$. \\
+
+>>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
 
 
 \end{document}

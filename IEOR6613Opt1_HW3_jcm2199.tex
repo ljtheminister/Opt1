@@ -12,7 +12,11 @@
 \maketitle
 \pagebreak
 
+<<<<<<< HEAD
 \section{3.12}
+=======
+\section*{3.12}
+>>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
 \textbf{(a)} LP in standard form with initial BFS (0,0,2,6):\\
 \begin{equation*}
 \begin{aligned}
@@ -24,8 +28,15 @@
 \end{equation*}
 
 \noindent
+<<<<<<< HEAD
 \textbf{(b)} Full Tableau Simplex Implementation:\\
 
+=======
+\textbf{(b)} Full Tableau Simplex Implementation: Attached on next sheets\\
+\textbf{(c)} Graphical representation: Attached on next sheets\\
+
+\pagebreak
+>>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
 
 \section*{3.15 (Perturbation approach to lexicography)}
 Consider a standard form problem, under the usual assumption that the rows of \textbf{A} are linearly independent.  Let $\epsilon$ be a scalar and define 
@@ -40,10 +51,77 @@ Consider a standard form problem, under the usual assumption that the rows of \t
 \end{equation*} \\
 
 \noindent 
+<<<<<<< HEAD
 For every $\epsilon > 0$, we define the $\epsilon$-perturbed problem to be the linear programming problem obtained by replacing \textbf{b} with $\mathbf{b}(\epsilon)$.
 
 
 \section*{3.18} Consider the simplex method applied to a standard form problem and assume that the rows of the matrix \textbf{A} are linearly indepednent.  For each of the statements that follow, give either a proof or a counterexample.\\
+=======
+For every $\epsilon > 0$, we define the $\epsilon$-perturbed problem to be the linear programming problem obtained by replacing \textbf{b} with $\mathbf{b}(\epsilon)$.\\
+
+\noindent
+\textbf{(a)}
+Given a basis matrix \textbf{B}, show that the corresponding basic solution $x_B(\epsilon)$ in the $\epsilon$-perturbed problem is equal to
+$$
+\mathbf{B}^{-1}[\mathbf{b} \, | \mathbf{I}]  \begin{bmatrix}
+      1 \\
+      \epsilon\\
+       \vdots \\
+       \epsilon^m 
+	\end{bmatrix}
+$$
+
+
+\noindent
+In short,
+$ \mathbf{x}_B(\epsilon) = \mathbf{B}^{-1}b(\epsilon)=  \mathbf{B}^{-1}b + \mathbf{B}^{-1} \begin{bmatrix}
+      \epsilon \\
+      \epsilon^2\\
+       \vdots \\
+       \epsilon^m 
+	\end{bmatrix}
+= \mathbf{B}^{-1}[\mathbf{b} \, | \mathbf{I}]  \begin{bmatrix}
+      1 \\
+      \epsilon\\
+       \vdots \\
+       \epsilon^m 
+	\end{bmatrix}$\\
+
+
+\noindent
+\textbf{(b)} 
+Show that there exists some $\epsilon^*$ such that all basic solutions to the $\epsilon$-perturbed problem are nondegenerate, for $0 < \epsilon < \epsilon^*$.\\
+
+\noindent
+Consider the basic solution $x_{B(\epsilon)}$, whether it be degenerate or nondegenerate.  By adding a small positive pertubation to $x_B$, $x_{B(\epsilon)}$ now has all of its m components being positive.  Therefore, it is nondegenerate to the $\epsilon$-perturbed problem as we are in standard form and exactly m components are positive.\\
+
+
+\noindent
+\textbf{(c)}  Suppose that all rows of $\mathbf{B}^{-1} [\mathbf{b} \, | \mathbf{I}]$ are lexicographically positive.  Show that $\mathbf{x}_B (\epsilon)$ is a basic feasible solution to the $\epsilon$-perturbed problem for $\epsilon$ positive and sufficiently small.\\
+
+
+\noindent
+$\mathbf{x}_B (\epsilon)$ is already a basic solution with exactly m positive components to correspond to full rank B.  Then, there are $n-m$ equality constraints corresponding to the remaining nonbasic variables which are equal to 0.  Since all equality constraints are satisfied, we have a BFS.  \\
+
+\noindent
+\textbf{(d)} Consider a feasible basis for the original problem, and assume that all rows of $\mathbf{B}^{-1} [\mathbf{b} \, | \mathbf{I}]$ are lexicographically positive.  Let some nonbasic variable $x_j$ enter the basis and define $\mathbf{u} = \mathbf{B}^{-1}\mathbf{A}_j$.  Let the exiting variable be determined as follows.  For every row $i$ such that $u_i$ is positive, divide the $i$th row of $\mathbf{B}^{-1} [\mathbf{b} \, | \mathbf{I}]$ by $u_i$, compare the results lexicographically, and choose the exiting variable to be the one corresponding to the lexicographically smallest row.  Show that this is the same choice of exiting variable as in the original simplex method applied to the $\epsilon$-perturbed problem, when $\epsilon$ is sufficiently small. \\
+
+
+\noindent
+Since all rows of $\mathbf{B}^{-1} [\mathbf{b} \, | \mathbf{I}]$ are lexicographically positive, $\mathbf{B}^{-1} \mathbf{b} \geq 0$.  We know $\mathbf{x}_B = B^{-1}b$ and $\mathbf{x}_{B(i)} = [B^{-1}b]_i$.  For each row where $u_i > 0$, dividing the row of $\mathbf{B}^{-1} [\mathbf{b} \, | \mathbf{I}]$ by $u_i$ and taking the lexicographically smallest row is equivalent to finding the minimum $\frac{x_{B(i)}}{u_i}$ because $\mathbf{x}_{B(i)}$ is the first element of the row and then, taking the basic variable with the smallest result from the min. ratio test. for positive $u_i$.\\
+
+\noindent Of course, $\epsilon$ must be sufficiently small.  If it were too large, we might have an infeasible basic solution.\\
+
+\noindent
+\textbf{(e)}  Explain why the revised simplex method, with the lexicographic rule described in part (d), is guaranteed to terminate even in the face of degeneracy.  \\
+
+\noindent
+Even in the case of degeneracy, each row of $\mathbf{B}^{-1} [\mathbf{b} \, | \mathbf{I}]$ is lexicographically positive.  The zeroth row is increasing lexicographically at each iteration because we are adding a positive multiple, $\theta^*$ of a row to the zeroth row.  Since the zeroth row is determined solely by the current basis, no basis is repeated twice and the simplex reaches a termination condition within a finite number of iterations.
+
+
+\section*{3.18} 
+Consider the simplex method applied to a standard form problem and assume that the rows of the matrix \textbf{A} are linearly indepednent.  For each of the statements that follow, give either a proof or a counterexample.\\
+>>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
 
 \noindent
 \textbf{(a)} An iteration of the simplex method may move the feasible solution by a positive distance while leaving the cost unchanged. \\
@@ -54,11 +132,19 @@ False.  Since A has full rank, every BFS is nondegenerate.  The cost of every su
 \noindent
 \textbf{(b)} A variable that has just left the basis cannot reenter in the very next iteration. \\
 
+<<<<<<< HEAD
+=======
+\noindent
+True. $\bar{c}_i = 0$ for the basic variable that is leaving.  The update rule for the zero$^\text{th}$ row is as follows: \\
+$\bar{c}_i^{\text{new}} = \bar{c}_i^{\text{old}} + u_l x_i$, where $u_l > 0$, $x_i \geq 0$.
+Since $u_l x_i \geq 0$, $\bar{c}_i^{\text{new}} \geq 0$.  In the next iteration of the simplex, if there exists a nonbasic column for which $\bar{c}_j < 0$, we choose that column.  Otherwise, the termination condition for the simplex method is met.  Therefore, $x_i$ will not enter in the next iteration.\\
+>>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
 
 \noindent
 \textbf{(c)} A variable that has just entered the basis cannot leave in the very next iteration.\\
 
 \noindent
+<<<<<<< HEAD
 False.  Consider a square with vertices (0,0), (0,1), (1,0), (1,1) as the polyhedron that defines the feasible set of \textbf{x} that satisfies \textbf{Ax = b}, our standard form LP.  2 basic, 2 nonbasic  \\
 
 \begin{equation*}
@@ -67,10 +153,19 @@ False.  Consider a square with vertices (0,0), (0,1), (1,0), (1,1) as the polyhe
 & \text{subject to} &  x_1 + \;x_3 \; & = 1 \\
 & 			&        x_2 \; + x_4 & = 1 \\
 & 			&	x_1, x_2, x_3, x_4 & \geq 0
+=======
+False.  This above statement is certainly false in the case of cycling when there is no positive movement in some basic direction.  Consider the following counter-example:
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} &  -x_1 & - 2x_2 &\\
+& \text{subject to} &  x_1 & + x_2  + x_3 & = 1 \\
+& 			&& 	x_1, x_2, x_3 &\geq 0 
+>>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
 \end{aligned}
 \end{equation*}
 
 \noindent
+<<<<<<< HEAD
 \textbf{(d)} If there is a nondegenerate optimal basis, then there exists a unique optimal basis.\\
 
 \noindent
@@ -78,4 +173,185 @@ False.  Consider a square with vertices (0,0), (0,1), (1,0), (1,1) as the polyhe
 
 
 
+=======
+Look at the example p.114 of Chapter 3 of the book.  $x_4$ has just entered and then leaves in the next iteration.\\
+
+\noindent
+\textbf{(d)} If there is a nondegenerate optimal basis, then there exists a unique optimal basis.\\
+
+\noindent
+False.  
+Consider the LP in standard form to minimize $x_2$ where \textbf{A} = $\begin{bmatrix}
+1 & 1 & -1 & 0\\
+1 & -1 & 0 & 1
+\end{bmatrix}$,
+and b = $\begin{bmatrix}
+1 \\
+3 \\
+\end{bmatrix}$.  $x_3$ and $x_4$ are slack variables. \vspace{1mm}  \\
+Let $\mathbf{B}_1 = 
+\begin{bmatrix}
+1 & -1  \\
+1 & 0
+\end{bmatrix} \Rightarrow y^*_1 = [3 \; 0 \;  2 \; 0]^\top.$ Let $\mathbf{B}_2 = 
+\begin{bmatrix}
+1 & 0  \\
+1 & 1
+\end{bmatrix} \Rightarrow y^*_2 = [1 \; 0 \; 0 \; 3]^\top.$ \\
+
+\noindent Here, both basis matrices are nondegenerate, but they yield non-unique optimal solutions where the objective function wishes to minimize $x_2$.\\
+
+
+\noindent
+\textbf{(e)} If \textbf{x} is an optimal solution found by the simplex method, no more than $m$ of its components can be positive, where $m$ is the number of equality constraints.\\
+
+\noindent
+True.  An optimal solution $\mathbf{x^*}$ from the simplex is a basic feasible solution.  Theorem 2.4 states that x is a basic solution if and only if we have $\mathbf{Ax=b}$ satisfied where the basis matrix has m linearly independent columns and for the $n-m$ nonbasic variables, $x_j = 0$.  Since $\mathbf{x^*} \geq 0$, and $n-m$ components are 0, then at most $m$ components can be positive. \\
+
+\section*{3.24}
+\noindent
+Show that in Phase I of the simplex method, if an artificial variable becomes nonbasic, it need never again become basic.  Thus, when an artificial variable becomes nonbasic, its columns can be eliminated from the tableau.\\
+
+\noindent
+Each iteration of the simplex is cost reducing unless the termination condition is met.  Once an artificial variable has become nonbasic, its re-emergence into the basis at the nonzero level would be cost increasing.  If $x_l = 0$ was in the basis, this is a case of linear dependence and the presence of $x_l$ in the basis demonstrates the existence of constraint redundancy.  If $x_l$ was basic at the non-zero level, its leaving the basis reduced cost.\\
+
+\noindent
+To clarify another point, the artificial variables are represented in the tableau as the identity matrix, making each of these columns linearly independent of each other.  Thus, reducing the cost by removing an artificial variable from the basis will not affect the simplex method's ability to reduce cost by removing a different artificial variable from the basis.\\
+
+\section*{3.25}
+Consider a problem of the form
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} && \mathbf{c'x} \\
+& \text{subject to} && \mathbf{Ax=b} \\
+& 			&&		\mathbf{0 \leq x \leq u}. 
+\end{aligned}
+\end{equation*}
+where \textbf{A} has linearly independent rows and dimensions $m \times n$.  Assume $u_i > 0$ for all $i.$\\
+
+\noindent
+\textbf{(a)}
+Let $\mathbf{A}_{B(1)}$,...,$\mathbf{A}_{B(m)}$ be $m$ linearly independent columns of \textbf{A} (the "basic columns).  We partition the set of all $i \neq B(1),...,B(m)$ into two disjoint subsets $L$ and $U$.  We set $x_i=0$ for all $i \in L$, and $x_i=u_i$ for all $i \in U$.  We then solve the equation \textbf{Ax=b} for the basic variables $x_{B(1)},...,x_{B(m)}$.  Show that the resulting vector \textbf{x} is a basic solution.  Also, show that it is nondegenerate if and only if $x_i \neq 0$ and $x_i \neq u_i$ for every basic variable $x_i$.  \\
+
+\noindent
+By definition, a basic solution is such that all equality constraints are active and out of the constraints active at $x^*$, there are n linearly independent constraints.
+Given m linearly independent columns, there are m (linearly independent) equality constraints such that $\mathbf{Ax=b}$ is satisfied for the m basic variables.  For all nonbasic variables, there are $n-m$ equality constraints such that $x_j = 0$ or $x_j = u_j$.  The $n-m$ equality constraints for these nonbasic variables come in the form of $\mathbf{I}_{n-m} \mathbf{x} = c$, where \textbf{I} is the identity matrix and each element of \textbf{c} is either 0 or an element of \textbf{u}.  \\
+
+\noindent
+($\Leftarrow$) Suppose $x_i \neq 0, x_i \neq u_i$ for basic variable $x_i$.  No basic variable is at the zero-level and no basic variable is equal to the upper bound.  Since x is a basic solution with n linearly independent constraints and there are no other constraints active at x, x is nondegenerate.\\
+
+\noindent
+($\Rightarrow$)
+Suppose x is is not degenerate.  x is a non-degenerate basic solution meaning that all equality constraints are satisfied and there are exactly n linearly independent constraints active at x.  Given that x is already a basic solution, there are n linearly independent constraints active already.  If a basic variable were to equal 0 or an upper bound, more than n constraints would be active, making x degenerate.  Therefore, $x_i \neq 0, x_i \neq u_i$ for each basic variable.\\
+
+
+\noindent
+\textbf{(b)}  For this part and the next, assume that the basic solution constructed in part (a) is feasible.  We form the simplex tableau and compute the reduced costs as usual.  Let $x_j$ be some nonbasic variable such that $x_j = 0$ and $\bar{c}_j < 0$.  As in Section 3.2, we increase $x_j$ by $\theta$, and adjust the basic variables from $\mathbf{x}_B$ to $\mathbf{x}_B - \theta \mathbf{B}^{-1}\mathbf{A}_j$.  Given that we wish to preserve feasibility, what is the largest possible value of $\theta$?  How are the new basic columns determined?\\
+
+\noindent
+Let $\theta^* = \text{min} \{\frac{x_{B(i)}}{[B^{-1}A_j]_{B(i)}} \text{ for } [B^{-1}A_j]_i > 0, \frac{u_{B(i)} - x_{B(i)}}{[B^{-1}A_j]_{B(i)}} \text{ for } [B^{-1}A_j]_i < 0,u_j \}$ \\
+Let $l$ be the index in the subset of i corresponding to $\theta^*$.  The new basis is found by replacing $\mathbf{A}_{B(l)}$ with $\mathbf{A}_j$.  In the case that $\theta = u_j$, the basis does not change, but the solution vector and objective value must nevertheless be updated.\\
+%Then, we add to each row of the tableau a constant multiple of the pivot row such that the pivot element is 1 and all other entries in the pivot column is 0.
+
+
+
+\noindent
+\textbf{(c)} Let $x_j$ be some nonbasic variable such that $x_j = u_j$ and $\bar{c}_j > 0$.  We decrease $x_j$ by $\theta$, and adjust the basic variables from $\mathbf{x}_B$ to $\mathbf{x}_B + \theta \mathbf{B}^{-1}\mathbf{A}_j$.  Given that we wish to preserve feasibility, what is the largest possible value of $\theta$.  How are the new basic columns determined? \\
+
+\noindent
+Let $\theta^* = \text{min} \{\frac{x_{B(i)}}{[B^{-1}A_j]_{B(i)}} \text{ for } [B^{-1}A_j]_i < 0, \frac{u_{B(i)} - x_{B(i)}}{[B^{-1}A_j]_{B(i)}} \text{ for } [B^{-1}A_j]_i > 0,u_j \}$\\
+Let $l$ be the index in the subset of i corresponding to $\theta^*$.  The new basis is found by replacing $\mathbf{A}_{B(l)}$ with $\mathbf{A}_j$.  As aforementioned, when $\theta = u_j$, the basis does not change, but the solution vector and objective value must still be updated.\\
+
+\noindent
+\textbf{(d)} Assuming that every basic feasible solution is nondegenerate, show that the cost strictly decreases with each iteration and the method terminates.\\
+
+\noindent
+The upper bound constraints can be converted such that the problem is reduced to standard form.  Hence, we know that the cost is strictly decreasing in a finite number of iterations.  Staying in this form, let's look at the zeroth row update rule, which is to make $\bar{c}_j = 0$.  If the reduced cost is positive, we are decreasing the nonbasic variable and if the reduced cost is negative, we are increasing the nonbasic variable and updating the BFS solution using the basic direction.  Hence, the cost is strictly decreasing at every iteration.  Since every BFS is nondegenerate, there is no cycling.  At each iteration, positive movement in a basic feasible direction will be taken to reduce cost and thus, the method will terminate in a finite number of steps.
+
+
+\section*{3.26}
+\noindent
+\textbf{(a)}  If the simplex method terminates with a solution (\textbf{x,y}) for which \textbf{y = 0}, then \textbf{x} is an optimal solution to the original problem.\\
+
+\noindent
+Let $y = 0.$  Then, we have $\mathbf{Ax=b}$ and $\mathbf{x} \geq 0$, which implies feasibility of the original problem.  Since $M(\displaystyle \sum_i y_i)=0$, the optimal solution to the big-M method is equivalent to having minimized  $\mathbf{c'x}$.  Therefore, \textbf{x} is the optimal solution to the original LP.\\
+
+\noindent
+\textbf{(b)}  If the simplex method terminates with a solution (\textbf{x,y}) for which $\mathbf{y \neq 0}$, then the original problem is infeasible.\\
+
+\noindent
+Let $\mathbf{y \neq 0}$.  Suppose the original LP is feasible.  If the original problem is feasible, we can satisfy $\mathbf{Ax=b}$ and $\mathbf{x} \geq 0$.  Therefore, when solving for the big-M problem, knowing M to be a large positive number ($M >> c_j x_j$) for any j, we would terminate at \textbf{y=0}.  This is a contradiction.  Hence, the original LP is infeasible.\\
+
+\noindent
+\textbf{(c)} If the simplex method terminates with an indication that the optimal cost in the big-M problem is $-\infty$, show that the original problem is either infeasible or its optimal cost is $-\infty$.  $Hint:$ When the simplex method terminates, it has discovered a feasible direction $\mathbf{d} = (\mathbf{d}_x, \mathbf{d}_y)$ of cost decrease.  Show that $\mathbf{d}_y = 0$. \\
+
+\noindent
+Suppose $\mathbf{d}_y > 0$.  In the big-M problem, increasing $\theta$ in any y direction increases the cost by $\theta M$ (since M and each $y_i$ is nonnegative).  This contradicts the assumption that feasible direction \textbf{d} is cost-reducing.  Since $\mathbf{d} \geq 0$ by definition, $\mathbf{d}_y = 0$.  \\
+
+\noindent 
+When the simplex terminates with $\mathbf{d}_y = 0$, there are two possibilities on the value of $\mathbf{y}$.  Firstly, when $\mathbf{y=0}$, we see that the original problem is feasible ($\mathbf{Ax=b}$).  However, $\mathbf{d}_x \geq 0$ and the simplex has terminated where the optimal cost is $-\infty$.  This suggests that the objective value for the big-M problem as well as the original LP is unbounded as $\mathbf{d}$ can take us down a direction that continues to reduce cost.\\
+
+\noindent
+Alternatively, the simplex can terminate where an artificial variable is in the basis.  Even though M is arbitrarily large, our $\mathbf{d}_y=0$ and thus, we cannot minimize on a $\mathbf{y}$-direction.  Therefore, the original problem must be infeasible. \\
+
+\noindent
+\textbf{(d)} Provide examples to show that both alternatives in part (c) are possible.\\
+
+Suppose $\mathbf{A} = [1 \; 0], \mathbf{b} = [1]$.
+\noindent
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} & -x_2 & \\
+& \text{subject to} & \mathbf{Ax + y} & = \mathbf{b}  \\
+&					& \mathbf{x,y} & \geq 0 
+\end{aligned}
+\end{equation*}
+
+The big-M problem is clearly unbounded.  Here, it is the case that the original problem is unbounded.\\
+
+Suppose $\mathbf{A} = [0], \mathbf{b} = [2]$.
+\noindent
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} & -x_1 & \\
+& \text{subject to} & \mathbf{Ax + y} & = \mathbf{b}  \\
+&					& \mathbf{x,y} & \geq 0 
+\end{aligned}
+\end{equation*}
+Here we can see that the big-M problem is also unbounded, but in this case, the artificial variable must be in the basis to maintain feasibility.  Here, \textbf{y} = [2].  The original problem is clearly infeasible.\\
+
+\section*{3.27}
+\noindent
+\textbf{(a)} Suppose that we wish to find a vector $\mathbf{x} \in \mathbb{R}^n$ that satisfies $\mathbf{Ax = 0}$ and $\mathbf{x \geq 0}$, and such that the number of positive components of \textbf{x} is maximized.  Show that this can be accomplished by solving the linear programming  problem.  \\
+
+\begin{equation*}
+\begin{aligned}
+& \text{maximize} &&\displaystyle \sum_{i=1}^n y_i \\
+& \text{subject to} &&\mathbf{A(z+y)=0} \\
+&&&					y_i \leq 1, \; \text{for all } i,\\
+&&&					\mathbf{z,y \geq 0}
+\end{aligned}
+\end{equation*} \\
+
+\noindent
+We begin at an initial basic feasible solution at $\mathbf{z,y = 0}$.  When solving the above LP, we will keep $\mathbf{z} = 0$ while pivoting along edges of a standard hypercube to make the components of \textbf{y}, $y_i > 0$, to increase our objective value.  Each component of $\textbf{y}$ equally contributes to increasing the objective value.  Thus, as we find more positive components of $\mathbf{y}$ while maintaining feasibility, we are finding more positive components for $\mathbf{Ax=b}$.
+
+
+\noindent
+\textbf{(b)} Suppose that we wish to find a vector $\mathbf{x} \in \mathbb{R}^n$ that satisfies $\mathbf{Ax = b}$ and $\mathbf{x \geq 0}$, and such that the number of positive components of \textbf{x} is maximized.  Show how this can be accomplished by solving a single linear programming problem. \\
+
+\noindent
+Consider the following LP:
+\begin{equation*}
+\begin{aligned}
+& \text{maximize} &&\displaystyle \sum_{i=1}^n y_i \\
+& \text{subject to} &&\mathbf{A(z+y)=b} \\
+&&&					y_i \leq 1, \; \text{for all } i,\\
+&&&					\mathbf{z,y \geq 0}
+\end{aligned}
+\end{equation*} \\
+
+\noindent
+Analogous in concept to part (a), we start at our initial basic feasible solution at $\mathbf{y=0}$ and $\mathbf{Az=b}$.  Pivoting along the edges of a standard hypercube to make the components of \textbf{y}, $y_i > 0$, to increase our objective value.  Each component of $\textbf{y}$ equally contributes to increasing the objective value.  Thus, as we find more positive components of $\mathbf{y}$ while maintaining feasibility, we are finding more positive components for $\mathbf{Ax=b}$ since $\mathbf{x = z + y}$.
+>>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
 \end{document}
