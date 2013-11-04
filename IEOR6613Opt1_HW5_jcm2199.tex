@@ -1,0 +1,37 @@
+\documentclass{article}
+
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb, amsmath, parallel, mathtools, graphicx}
+
+\begin{document}
+
+\title{IEOR 6613 - Optimization I\\ HW 5:  4.43, 5.3, 5.5, 5.12, 5.14, 6.1, 6.4}
+
+\author{John Min\\ jcm2199}
+\date{October 30, 2013}
+\maketitle
+
+\section*{4.43}
+
+\textbf{(a)}  Consider the minimization of $c_1 x_1 + c_2 x_2$ subject to the constraints:
+$x_2 - 3 \leq x_1 \leq 2 x_2 +2, \; x_1, x_2 \geq 0$. \\
+\noindent 
+Find necessary and sufficient conditions on $(c_1, c_2)$ for the optimal cost to be finite.\\
+
+\noindent
+The dual becomes a maximization of $3 p_1 + 2 p_2$ subject to the constraints: $- p_1 + p_2 \geq c_1, p_1 - p_2 \geq c_2, p_1, p_2 \leq 0$.  If we sum the first two constraint equations, we see that $c_1 + c_2 \leq 0$ is a constraint.  Since the feasible set of the primal is unbounded, only $c_1 \geq 0, c_2 \geq 0$ will force the optimal cost to be finite.  If a $c_j > 0$, the optimal $x^*_j = 0$.  If one or both of the $c_j$'s are negative, the primal becomes unbounded as we can drive the $x_j$ towards $\inf$. \\
+\noindent
+
+
+\noindent
+\textbf{(b)}
+For a general feasible linear programming problem, consider the set of all cost vectors for which the optimal cost is finite.  Is it a poyhedron?  Prove your answer. \\
+
+
+
+
+\section*{5.3}
+
+
+
+\end{document}
