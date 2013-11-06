@@ -50,8 +50,19 @@ Clearly, $0 \in [\delta_1, \delta_2].$  If there is no nonzero $\delta$ such tha
 
 \textbf{(a)} Give necessary and sufficient conditions for the basis descibed by this tableau to be optimal. \\
 
-\noindent If $\bar{c}_3, \bar{c}_5 \geq 0$, then, the basis is optimal by Definition 3.3 since all the basic variables are nonnegative ($\mathbf{B^{-1}b \geq 0}$).
+\noindent 
+From the tableau, we see that $\mathbf{B^{-1} [A_3 A_4 A_5] = B^{-1} I = B^{-1} = } 
+\begin{bmatrix}
+-1 & 0 & \beta \\
+ 2 & 1 & \gamma \\
+ 4 & 0 & \delta
+\end{bmatrix}
+$ \\
+Certainly, det($\mathbf{B^{-1}}) \neq 0 \Leftrightarrow \delta \neq 4 \beta$. \\
 
+\noindent If $\bar{c}_3, \bar{c}_5 \geq 0$, then, the basis is optimal by Definition 3.3 since all the basic variables are nonnegative ($\mathbf{B^{-1}b \geq 0}$). For these nonnegative reduced costs, we need $c_3 - \mathbf{c_B'} [-1 \; 2 \; 4] \geq 0 \text{ and } c_5 - \mathbf{c_B'} [\beta \;  \gamma \; \delta] \geq 0$.\\
+
+\noindent
 \textbf{(b)} Assume that this basis is optimal and that $\bar{c}_3 = 0$.  Find an optimal basic feasible solution, other than the one described by this tableau. \\
 
 \noindent $ x_1 = 3, x_2 = 1, x_3 = 1 $. \\
@@ -61,9 +72,13 @@ Clearly, $0 \in [\delta_1, \delta_2].$  If there is no nonzero $\delta$ such tha
 \noindent
 Of course, if the reduced costs are nonnegative, we have reached an optimal BFS at this iteration.  If $c_3 < 0$, $x_3$ can enter the basis with either $x_1$ or $x_4$ leaving the basis and reduce the cost.  If $c_5 < 0$ and $\gamma > 0$, $x_5$ can enter the basis for $x_4$.  \\
 
-
+\noindent
 \textbf{(d)}  Assume that the basis associated with this tableau is optimal.  Suppose also that $b_1$ in the original problem is replaced by $b_1 + \epsilon$.  Give upper and lower bounds on $\epsilon$ so that this basis remains optimal. \\
  
+\noindent 
+Optimality conditions are not affected by the changes in $\mathbf{b}$.  Therefore, we only need to check for feasibility:  $\mathbf{B^{-1}(b } + \delta \mathbf{e_1) \geq 0}$.  \\
+
+
 \textbf{(e)}  Assume that the basis associated with this tableau is optimal.  Suppose also that $c_1$ in the original problem is replaced by $c_1 + \epsilon$.  Give upper and lower bounds on $\epsilon$ so that this basis remains optimal. \\
 
 \noindent $ - \bar{c}_3 / 4 \leq \epsilon \leq \bar{c}_5 / \delta$.
@@ -85,10 +100,25 @@ Suppose they are not adjacent.  It means that we cannot replace a basic variable
 \noindent
 $\mathbf{(c - 10d)' x = (c + 10d)' x \Rightarrow -10d'x = 10d'x \Rightarrow 20d'x = 0 \Rightarrow d'x = 0}$.  Therefore, $5 \mathbf{d'x} = 0$ and hence, 5 is an optimal theta for the same basis.  Now, we just need to check feasibility and since $5 \in [-10, 10]$, we know that $\mathbf{Ax = b} + \theta \mathbf{f}$. \\
 
-\textbf{(b)}  Suppose that $f(\theta)$ is a piecewise quadratic function of $\theta$.  Give an upper bound on the number of "pieces". \\
+\noindent
+\textbf{(b)}  Show that $f(\theta)$ is a piecewise quadratic function of $\theta$.  Give an upper bound on the number of "pieces". \\
+
+\noindent
+If $\mathbf{x} \in \mathbb{R}^n$, then, the number of "pieces" $\leq n$. \\
+
+
+\noindent
+\textbf{(c)}  Let $\mathbf{b = 0 \text{ and } c = 0}$.  Suppose that a certain basis is optimal for $\theta = 1$.  For what other nonnegative values of $\theta$ is that same basis optimal? \\
 
 \noindent
 
+
+
+\noindent
+\textbf{(d)} Is $f(\theta)$ convex, concave, or neither? \\
+
+\noindent
+$f(\theta)$ is a concave 
 
 
 
