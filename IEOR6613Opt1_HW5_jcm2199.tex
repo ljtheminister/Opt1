@@ -30,7 +30,18 @@ For a general feasible linear programming problem, consider the set of all cost 
 Yes.  Any general LP can be rewritten into the form of minimizing $\mathbf{c'x}$ subject to $\mathbf{Ax \geq b}$.  By Theorem 4.14, the LP has an unbounded optimal cost if and only if some extreme ray $\mathbf{d}$ of the feasible set satisfying $\mathbf{c'd} < 0$.  For the optimal cost to be bounded, we need $\mathbf{c'd \geq 0}$ for any $\mathbf{d}$, which represents a polyhedron. \\
 
 \section*{5.3 (Sensitivity with respect to changes in a basic column of A)}
-Consider a linear programming problem in standard form under the usual assumption that the rows of the matrix $\mathbf{A}$ are linearly independent.  Suppose that the columns $\mathbf{A_1, \ldots, A_m}$ form an optimal basis.  Let $\mathbf{A_0}$ be some vector and suppose that we change $\mathbf{A_1}$ to $\mathbf{A_1} + \delta \mathbf{A_0}$.  Consider the matrix $\mathbf{B}(\delta)$ consisting of the columns $\mathbf{A_1} + \delta \mathbf{A_0, A_2, \ldots, A_m}$.  Let $[\delta_1, \delta_2]$ be a closed interval of values of $\delta$ that contains zero and in which the determinant of $\mathbf{B}(\delta)$ is nonzero.  Show that the subset of $[\delta_1, \delta_2]$ for which $\mathbf{B}(\delta)$ is an optimal basis is also a closed interval.  
+Consider a linear programming problem in standard form under the usual assumption that the rows of the matrix $\mathbf{A}$ are linearly independent.  Suppose that the columns $\mathbf{A_1, \ldots, A_m}$ form an optimal basis.  Let $\mathbf{A_0}$ be some vector and suppose that we change $\mathbf{A_1}$ to $\mathbf{A_1} + \delta \mathbf{A_0}$.  Consider the matrix $\mathbf{B}(\delta)$ consisting of the columns $\mathbf{A_1} + \delta \mathbf{A_0, A_2, \ldots, A_m}$.  Let $[\delta_1, \delta_2]$ be a closed interval of values of $\delta$ that contains zero and in which the determinant of $\mathbf{B}(\delta)$ is nonzero.  Show that the subset of $[\delta_1, \delta_2]$ for which $\mathbf{B}(\delta)$ is an optimal basis is also a closed interval.  \\
+
+
+\noindent
+For $\mathbf{B}(\delta)$ to be an optimal basis, we need to check for two conditions:
+\begin{itemize}
+	\item $\mathbf{B}(\delta)^{-1} \mathbf{b} \geq 0$ (feasibility) 
+	\item $\mathbf{ \bar{c} = c' - c_B' B(\delta)^{-1}A \geq 0 }$ (optimality)
+\end{itemize}
+
+\noindent
+Clearly, $0 \in [\delta_1, \delta_2].$
 
 
 \section*{5.5}
