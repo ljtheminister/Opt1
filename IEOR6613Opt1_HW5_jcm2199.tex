@@ -32,6 +32,49 @@ For a general feasible linear programming problem, consider the set of all cost 
 
 \section*{5.3}
 
+\section*{5.5}
+
+\textbf{(a)} Give necessary and sufficient conditions for the basis descibed by this tableau to be optimal. \\
+
+\noindent If $\bar{c}_3, \bar{c}_5 \geq 0$, then, the basis is optimal by Definition 3.3 since all the basic variables are nonnegative ($\mathbf{B^{-1}b \geq 0}$).
+
+\textbf{(b)} Assume that this basis is optimal and that $\bar{c}_3 = 0$.  Find an optimal basic feasible solution, other than the one described by this tableau. \\
+
+\noindent $ x_1 = 3, x_2 = 1, x_3 = 1 $. \\
+
+\textbf{(c)} Suppose that $\gamma > 0$.  Show that there exists an optimal basic feasible solution, regardless of the values of $\bar{c}_3$ and $\bar{c}_5$.   \\
+
+\noindent
+Of course, if the reduced costs are nonnegative, we have reached an optimal BFS at this iteration.  If $c_3 < 0$, $x_3$ can enter the basis with either $x_1$ or $x_4$ leaving the basis and reduce the cost.  If $c_5 < 0$ and $\gamma > 0$, $x_5$ can enter the basis for $x_4$.  \\
+
+
+\textbf{(d)}  Assume that the basis associated with this tableau is optimal.  Suppose also that $b_1$ in the original problem is replaced by $b_1 + \epsilon$.  Give upper and lower bounds on $\epsilon$ so that this basis remains optimal. \\
+ 
+\textbf{(e)}  Assume that the basis associated with this tableau is optimal.  Suppose also that $c_1$ in the original problem is replaced by $c_1 + \epsilon$.  Give upper and lower bounds on $\epsilon$ so that this basis remains optimal. \\
+
+\noindent $ - \bar{c}_3 / 4 \leq \epsilon \leq \bar{c}_5 / \delta$.
+
+\section*{5.12}
+\textbf{(a)}  Suppose that for some value of $\theta$, there are exactly two distinct basic feasible solutions that are optimal.  Show that they must be adjacent.  \\
+
+\noindent
+Let $ \mathbf{x^*, y^*}$ be the two distinct optimal BFS for the parametric programming problem.  Since they are optimal and for some fixed $\theta$, $(\mathbf{c} + \theta \mathbf{d})\mathbf{' x^*} = (\mathbf{c} + \theta \mathbf{d})\mathbf{' y^*}$.  If they are adjacent optimal BFS, then, given some iteration in the simplex where optimality has been achieved, one can take a nonbasic variable $x_j$ with $\bar{c}_j = 0$ to traverse the basic feasible direction between the two optimal solutions.  \\
+
+\noindent
+Suppose they are not adjacent.  It means that we cannot replace a basic variable with a nonbasic one with zero reduced cost to traverse between $x^*$ and $y^*$.  If the basic feasible direction to traverse between the two basic feasible solutions is associated with a nonzero cost, clearly, the two BFS cannot be both optimal because they have different costs.  Otherwise,  if there exists a BFS, $z^*$, between $x^*$ and $y^*$, which we can traverse thru to get from the two BFS with zero change in the cost which leads to there being more than two distinct optimal BFS.  Therefore, they must be adjacent.
+
+\textbf{(b)}
+
+\section*{5.14}
+\textbf{(a)} Suppose that a certain basis is optimal for $\theta = -10$ and for $\theta = 10$.  Prove that the same basis is optimal for $\theta = 5$.  \\
+
+\noindent
+$\mathbf{(c - 10d)' x = (c + 10d)' x \Rightarrow -10d'x = 10d'x \Rightarrow 20d'x = 0 \Rightarrow d'x = 0}$.  Therefore, $5 \mathbf{d'x} = 0$ and hence, 5 is an optimal theta for the same basis.  Now, we just need to check feasibility and since $5 \in [-10, 10]$, we know that $\mathbf{Ax = b} + \theta \mathbf{f}$. \\
+
+\textbf{(b)}  Suppose that $f(\theta)$ is a piecewise quadratic function of $\theta$.  Give an upper bound on the number of "pieces". \\
+
+\noindent
+
 
 
 \end{document}

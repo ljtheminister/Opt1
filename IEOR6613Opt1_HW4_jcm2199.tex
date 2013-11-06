@@ -1,14 +1,8 @@
 \documentclass{article}
 
 \usepackage[margin=1.0in]{geometry}
-<<<<<<< HEAD
 \usepackage{amssymb, amsmath, parallel, mathtools}
 
-
-=======
-\usepackage{amssymb}
-\usepackage{amsmath}
->>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
 
 \begin{document}
 \title{IEOR 6613 - Optimization I\\ HW 4:  4.4, 4.7, 4.9, 4.12, 4.14, 4.20, 4.26}
@@ -72,7 +66,6 @@ Formulate the dual:
 \end{aligned}
 \end{equation*}
 
-<<<<<<< HEAD
 \section*{4.9 (Back-propogation of dual variables in a multiperiod problem)}
 A company makes a product that can be either sold or stored to meet future demand.  Let $t = 1, \ldots, T$ denote the periods of the planning horizon.  Let $b_t$ be the production volume during period $t$, which is assumed to be known in advance.  During each period $t$, a quantity $x_t$ of the product is sold, at a unit price of $d_t$.  Furthermore, a quantity $y_t$ can be sent to long-term storage, at a unit transportation cost of $c.$  Alternatively, a quantity $w_t$ can be retrieved from storage, at zero cost.  We assume that when the product is prepared for long-term storage, it is partly damaged, and only a fraction $f$ of the total survives.  Demand is assumed to be unlimited.  The main question is whether it is profitable to store some of the production in anticipation of higher prices in the future.  This leads us to the following problem, where $z_t$ stands for the amount kept in long-term storage, at the end of period $t$: \\
 
@@ -93,22 +86,18 @@ A company makes a product that can be either sold or stored to meet future deman
 \noindent \textbf{(c)} Explain how the result in part (b) can be used to compute an optimal solution to the original problem.  Primal and dual nondegeneracy can be assumed. \\
 
 
-=======
->>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
+
 \section*{4.12 (Degeneracy and uniqueness)}
 Consider a general linear programming problem and suppose that we have a nondegenerate basic feasible solution to the primal.  Show that the complementary slackness conditions lead to a system of equations for the dual vector that has a unique solution.\\
 
 \noindent
-<<<<<<< HEAD
 
-=======
 Let $\mathbf{x} \in \mathbb{R}^n$, be a nondegenerate basic feasible solulution to the primal.  Therefore, $\mathbf{x}$ satisfies exactly $n$ linearly independent constraints as well as all inequality constraints.\\
->>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
+
 The complementary slackness conditions state the following:\\
 
 \begin{equation*}
 \begin{aligned}
-<<<<<<< HEAD
 p_i (\mathbf{a_i'x} - b_i) & = 0 \; \; \; \forall i, \\
 (c_j - \mathbf{p' A_j}) x_j & = 0 \; \; \; \forall j.
 \end{aligned}
@@ -230,22 +219,64 @@ $\mathbf{Ax = 0, x \geq 0} \Leftrightarrow \mathbf{x = 0},$  meaning $\mathbf{A}
 \noindent
 $(\mathbf{(a) \Rightarrow \neg (b)})$ \\
 Suppose there exists some $\mathbf{x \neq 0}$ such that $\mathbf{Ax = 0, x \geq 0} \Rightarrow $  the columns of $\mathbf{A}$ are linearly dependent.
-\noindent
 
-=======
+\noindent
+\begin{equation*}
+\begin{aligned}
 u_i & = & p_i (\mathbf{a_i'x} - b_i) & = 0 \; \; \forall i \\
 v_i & = & (c_j - \mathbf{p' A_j}) x_j & = 0 \; \; \forall j
 \end{aligned}
 \end{equation*}
 
-Let's construct the primal and dual 
+
+and assume that both problems have an optimal solution.  Fix some $j$.  Supose that every optimal solution to the primal satisfies $x_j = 0$.  Show that there exists an optimal solution $\mathbf{p}$ to the dual such that $\mathbf{p'A_j} < c_j$.  \emph{Hint:} Let $d$ be the optimal colst.  Consider the problem of minimizing $-x_j$ subject to $\mathbf{Ax=b, x\geq 0}$, and $\mathbf{-c'x} \geq d,$ and form its dual.\\
+
+\noindent \textbf{(b)} Show that there exist optimal solutions \textbf{x} and \textbf{p} to the primal and to the dual, respectively such that for every $j$ we have either $x_j > 0$ or $\mathbf{p'A_j} < c_j$.  \emph{Hint:} Use part (a) for each $j$, and then take the average of the vectors obtained. \\
+
+\noindent \textbf{(c)} Consider now the following LP and its dual: \\
+
+\begin{Parallel}[v]{0.5\textwidth}{0.2\textwidth}
+\ParallelLText{\noindent
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} && \mathbf{c'x} \\
+& \text{subject to} && \mathbf{Ax \geq b}\\
+&&& \mathbf{x \geq 0},
+\end{aligned}
+\end{equation*}
+}
+\ParallelRText{\noindent
+\begin{equation*}
+\begin{aligned}
+& \text{maximize} && \mathbf{p'b} \\
+& \text{subject to} && \mathbf{p'A \leq c'} \\
+&&& \mathbf{p \geq 0.}
+\end{aligned}
+\end{equation*}
+}
+\ParallelPar
+\end{Parallel}
+
+
+\noindent \\
+Assume that both problems have an optimal solution.  Show that there exist optimal solutions to the primal and to the dual, respectively that satisfy \emph{strict complementary slackness}, that is:
+(i) For every $j$, we have either $x_j > 0$ or $\mathbf{p'A_j} < c_j$ \\
+(ii) For every $i$, we have either $\mathbf{a'_i x} > b_i$ or $p_i > 0$.  \emph{Hint:} Convert the primal to standard form and apply part (b). \\
 
 \section*{4.26} 
 Let $\mathbf{A}$ be a given matrix.  Show that exactly one of the following alternatives must hold.\\
+
+\noindent
 \textbf{(a)} There exists some $\mathbf{x \neq 0}$ such that $\mathbf{Ax = 0, x \geq 0}$.\\
 \textbf{(b)} There exists some \textbf{p} such that $\mathbf{p'A > 0}$. \\
 
->>>>>>> ea774a31e17ec5bd9511b47a1dfa21062b3d6b64
+\noindent
+($\mathbf{\neg (a) \Rightarrow (b)}$) \\
+\noindent
+$\mathbf{Ax = 0, x \geq 0} \Leftrightarrow \mathbf{x = 0},$  meaning $\mathbf{A}$ has $n$ linearly independent columns.  Regardless of $m$, the column space of $\mathbf{A}$ spans $\mathbb{R}^n$.  By setting all $p_i = 0$ for $i \notin \{1, \dots, n\}$, it is clear that we can find a vector $\mathbf{p}$ such that $\mathbf{p'A > 0}$. \\
 
+\noindent
+$(\mathbf{(a) \Rightarrow \neg (b)})$ \\
+Suppose there exists some $\mathbf{x \neq 0}$ such that $\mathbf{Ax = 0, x \geq 0} \Rightarrow $  the columns of $\mathbf{A}$ are linearly dependent.
 
 \end{document}
