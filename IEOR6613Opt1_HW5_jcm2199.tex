@@ -34,8 +34,7 @@ Consider a linear programming problem in standard form under the usual assumptio
 
 
 \noindent
-The Sherman-Morrison formula states the following:  $\mathbf{B(\delta)^{-1} = B^{-1} - } \frac{ \mathbf{B^{-1} A_0 e_1} \delta }{1 + \delta \mathbf{e_1' B^{-1} A_0}} $ \\.
-\noindent
+The Sherman-Morrison formula states the following:  $\mathbf{B(\delta)^{-1} = B^{-1} - } \frac{ \mathbf{B^{-1} A_0 e_1} \delta }{1 + \delta \mathbf{e_1' B^{-1} A_0}} $. \\
 For $\mathbf{B}(\delta)$ to be an optimal basis, we need to check for two conditions:
 \begin{itemize}
 	\item $\mathbf{B}(\delta)^{-1} \mathbf{b} \geq 0$ (feasibility) 
@@ -43,7 +42,7 @@ For $\mathbf{B}(\delta)$ to be an optimal basis, we need to check for two condit
 \end{itemize}
 
 \noindent
-Clearly, $0 \in [\delta_1, \delta_2].$  If there is no nonzero $\delta$ such that both the feasibility and optimality conditions hold, we still have a closed interval.
+Clearly, $0 \in [\delta_1, \delta_2].$  If there is no nonzero $\delta$ such that both the feasibility and optimality conditions hold, we still have a closed interval.  Otherwise, we have $\delta$ amount of change with respect to the second term in the Sherman-Morrison formula, driving the basic variables and/or reduced costs to 0.  Some $\delta_1$ and $\delta_2$ will eventually drive a basic variable and reduced cost to 0, respectively, that was originally positive.  Since these $\delta$ values can be included in this range of optimal $\delta$, we have a closed interval, one that also includes 0. \\
 
 
 
