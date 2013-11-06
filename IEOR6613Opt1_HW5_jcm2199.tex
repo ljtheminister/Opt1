@@ -20,7 +20,6 @@ Find necessary and sufficient conditions on $(c_1, c_2)$ for the optimal cost to
 
 \noindent
 The dual becomes a maximization of $3 p_1 + 2 p_2$ subject to the constraints: $- p_1 + p_2 \geq c_1, p_1 - p_2 \geq c_2, p_1, p_2 \leq 0$.  If we sum the first two constraint equations, we see that $c_1 + c_2 \leq 0$ is a constraint.  Since the feasible set of the primal is unbounded, only $c_1 \geq 0, c_2 \geq 0$ will force the optimal cost to be finite.  If a $c_j > 0$, the optimal $x^*_j = 0$.  If one or both of the $c_j$'s are negative, the primal becomes unbounded as we can drive the $x_j$ towards $\infty$. \\
-\noindent
 
 
 \noindent
@@ -30,8 +29,9 @@ For a general feasible linear programming problem, consider the set of all cost 
 \noindent
 Yes.  Any general LP can be rewritten into the form of minimizing $\mathbf{c'x}$ subject to $\mathbf{Ax \geq b}$.  By Theorem 4.14, the LP has an unbounded optimal cost if and only if some extreme ray $\mathbf{d}$ of the feasible set satisfying $\mathbf{c'd} < 0$.  For the optimal cost to be bounded, we need $\mathbf{c'd \geq 0}$ for any $\mathbf{d}$, which represents a polyhedron. \\
 
+\section*{5.3 (Sensitivity with respect to changes in a basic column of A)}
+Consider a linear programming problem in standard form under the usual assumption that the rows of the matrix $\mathbf{A}$ are linearly independent.  Suppose that the columns $\mathbf{A_1, \ldots, A_m}$ form an optimal basis.  Let $\mathbf{A_0}$ be some vector and suppose that we change $\mathbf{A_1}$ to $\mathbf{A_1} + \delta \mathbf{A_0}$.  Consider the matrix $\mathbf{B}(\delta)$ consisting of the columns $\mathbf{A_1} + \delta \mathbf{A_0, A_2, \ldots, A_m}$.  Let $[\delta_1, \delta_2]$ be a closed interval of values of $\delta$ that contains zero and in which the determinant of $\mathbf{B}(\delta)$ is nonzero.  Show that the subset of $[\delta_1, \delta_2]$ for which $\mathbf{B}(\delta)$ is an optimal basis is also a closed interval.  
 
-\section*{5.3}
 
 \section*{5.5}
 
