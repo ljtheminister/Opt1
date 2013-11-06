@@ -86,7 +86,7 @@ x_3 = \frac{3}{4} & \frac{1}{4} & 0 & 1 & 0 & \frac{\delta}{4} \\
 \textbf{(c)} Suppose that $\gamma > 0$.  Show that there exists an optimal basic feasible solution, regardless of the values of $\bar{c}_3$ and $\bar{c}_5$.   \\
 
 \noindent
-Of course, if the reduced costs are nonnegative, we have reached an optimal BFS at this iteration.  If $c_3 < 0$, $x_3$ can enter the basis with either $x_1$ or $x_4$ leaving the basis and reduce the cost.  If $c_5 < 0$ and $\gamma > 0$, $x_5$ can enter the basis for $x_4$.  \\
+Of course, if the reduced costs are nonnegative, we have reached an optimal BFS at this iteration.  If $\bar{c}_3 < 0$, $x_3$ can enter the basis with either $x_1$ leaving the basis and reduce the cost and $\bar{c}_3$ becomes 0.  We are done and have reached an optimal basis if $\bar{c}_5 \geq 0$.  Otherwise, we are left with only one negative reduced cost, $\bar{c}_5$.   With $c_5 < 0$ and $\gamma > 0$, $x_5$ can then enter the basis for $x_4$ and we have nonnegative reduced costs and an optimal BFS.  We will not reach a point in a simplex iteration where no compunent of $\mathbf{u}$ is positive such that the simplex terminates and we conclude that the optimal cost is $-\infty$.\\
 
 \noindent
 \textbf{(d)}  Assume that the basis associated with this tableau is optimal.  Suppose also that $b_1$ in the original problem is replaced by $b_1 + \epsilon$.  Give upper and lower bounds on $\epsilon$ so that this basis remains optimal. \\
@@ -121,7 +121,6 @@ Primal feasibility is not affected.  The new optimality condition is:  $(\mathbf
 \end{equation*}
 
 
-
 \section*{5.12}
 \textbf{(a)}  Suppose that for some value of $\theta$, there are exactly two distinct basic feasible solutions that are optimal.  Show that they must be adjacent.  \\
 
@@ -129,9 +128,12 @@ Primal feasibility is not affected.  The new optimality condition is:  $(\mathbf
 Let $ \mathbf{x^*, y^*}$ be the two distinct optimal BFS for the parametric programming problem.  Since they are optimal and for some fixed $\theta$, $(\mathbf{c} + \theta \mathbf{d})\mathbf{' x^*} = (\mathbf{c} + \theta \mathbf{d})\mathbf{' y^*}$.  If they are adjacent optimal BFS, then, given some iteration in the simplex where optimality has been achieved, one can take a nonbasic variable $x_j$ with $\bar{c}_j = 0$ to traverse the basic feasible direction between the two optimal solutions.  \\
 
 \noindent
-Suppose they are not adjacent.  It means that we cannot replace a basic variable with a nonbasic one with zero reduced cost to traverse between $x^*$ and $y^*$.  If the basic feasible direction to traverse between the two basic feasible solutions is associated with a nonzero cost, clearly, the two BFS cannot be both optimal because they have different costs.  Otherwise,  if there exists a BFS, $z^*$, between $x^*$ and $y^*$, which we can traverse thru to get from the two BFS with zero change in the cost which leads to there being more than two distinct optimal BFS.  Therefore, they must be adjacent.
+Suppose they are not adjacent.  It means that we cannot replace a basic variable with a nonbasic one with zero reduced cost to traverse between $x^*$ and $y^*$.  If the basic feasible direction to traverse between the two basic feasible solutions is associated with a nonzero cost, clearly, the two BFS cannot be both optimal because they have different costs.  Otherwise,  if there exists a BFS, $z^*$, between $x^*$ and $y^*$, which we can traverse thru to get from the two BFS with zero change in the cost which leads to there being more than two distinct optimal BFS.  Therefore, they must be adjacent. \\
 
+\noindent
 \textbf{(b)}
+
+
 
 \section*{5.14}
 \textbf{(a)} Suppose that a certain basis is optimal for $\theta = -10$ and for $\theta = 10$.  Prove that the same basis is optimal for $\theta = 5$.  \\
@@ -150,7 +152,15 @@ If $\mathbf{x} \in \mathbb{R}^n$, then, the number of "pieces" $\leq n$. \\
 \textbf{(c)}  Let $\mathbf{b = 0 \text{ and } c = 0}$.  Suppose that a certain basis is optimal for $\theta = 1$.  For what other nonnegative values of $\theta$ is that same basis optimal? \\
 
 \noindent
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} && \theta\mathbf{d'x} \\
+& \text{subject to} && \mathbf{Ax = } \theta \mathbf{x} \\
+& && \mathbf{x \geq 0}
+\end{aligned}
+\end{equation*}
 
+Let $\mathbf{B}$ be an optimal basis for $\theta = 1$ and assume that $\theta > 0$.  All nonnegative $\theta$ satisfying the feasibility and optimality conditions 
 
 
 \noindent
@@ -168,6 +178,24 @@ Since there are $m$ constraints, we apply the ceiling cunction to our decision v
 \section*{6.4}
 
 \noindent
+\textbf{(a)}
+Form the dual problem and explain how Dantzig-wolfe decomposition can be applied to it.  What is the structure of the subproblems solved during a typical iteration? \\
 
+\noindent
+The dual can be formulated as follows:\\
+\begin{equation*}
+\begin{aligned}
+& \text{maximize} && \mathbf{p'b} \\
+& \text{subject to} &&  \mathbf{p'  \begin{bmatrix} \mathbf{D_1} \\\mathbf{0} \end{bmatrix} \leq c_1}
+ \\
+& &&  \mathbf{p'  \begin{bmatrix} \mathbf{0} \\ \mathbf{D_2} \end{bmatrix} \leq c_2} \\
+& &&  \mathbf{p'  \begin{bmatrix} \mathbf{F_1} \\ \mathbf{F_2} \end{bmatrix} = c_0} \\
+& & &\mathbf{p \geq 0}
+\end{aligned}
+\end{equation*}
+
+
+\noindent
+Using the Dantzig-Wolfe decomposition
 
 \end{document}
