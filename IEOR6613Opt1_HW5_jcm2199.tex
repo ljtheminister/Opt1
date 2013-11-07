@@ -19,8 +19,8 @@ $x_2 - 3 \leq x_1 \leq 2 x_2 +2, \; x_1, x_2 \geq 0$. \\
 Find necessary and sufficient conditions on $(c_1, c_2)$ for the optimal cost to be finite.\\
 
 \noindent
-The dual becomes a maximization of $3 p_1 + 2 p_2$ subject to the constraints: $- p_1 + p_2 \geq c_1, p_1 - p_2 \geq c_2, p_1, p_2 \leq 0$.  If we sum the first two constraint equations, we see that $c_1 + c_2 \leq 0$ is a constraint.  Since the feasible set of the primal is unbounded, only $c_1 \geq 0, c_2 \geq 0$ will force the optimal cost to be finite.  If a $c_j > 0$, the optimal $x^*_j = 0$.  If one or both of the $c_j$'s are negative, the primal becomes unbounded as we can drive the $x_j$ towards $\infty$. \\
-
+The dual becomes a maximization of $3 p_1 + 2 p_2$ subject to the constraints: $- p_1 + p_2 \geq c_1, p_1 - 2 p_2 \geq c_2, p_1, p_2 \leq 0$.  We get two constraints from the dual for a finite optimal cost where $p_1 = p_2 = 0.$ \\
+$c_1 + c_2 \geq 0$ and $2 c_1 + c_2 \geq 0$. \\
 
 \noindent
 \textbf{(b)}
@@ -42,9 +42,7 @@ For $\mathbf{B}(\delta)$ to be an optimal basis, we need to check for two condit
 \end{itemize}
 
 \noindent
-Clearly, $0 \in [\delta_1, \delta_2].$  If there is no nonzero $\delta$ such that both the feasibility and optimality conditions hold, we still have a closed interval.  Otherwise, we have $\delta$ amount of change with respect to the second term in the Sherman-Morrison formula, driving the basic variables and/or reduced costs to 0.  Some $\delta_1$ and $\delta_2$ will eventually drive a basic variable and reduced cost to 0, respectively, that was originally positive.  Since these $\delta$ values can be included in this range of optimal $\delta$, we have a closed interval, one that also includes 0. \\
-
-
+Clearly, $0 \in [\delta_1, \delta_2].$  If there is no nonzero $\delta$ such that both the feasibility and optimality conditions hold, we still have a closed interval.  Let $\delta^1, \ldots, \delta^N$ be a sequence that converges to $\delta$.  There exists $\delta$ for which the feasibility constraint is active and perhaps the same or another $\delta$ for which the optimality is constraint is active.  The set of possible $\delta$ in maintaining feasibility contains all of its limit points and thus is closed.  This is also true for the set of $\delta$ to maintain optimality.  The intersection of two closed sets is closed.  Therefore, this optimal basis holds for a closed interval of $\delta$.
 
 \section*{5.5}
 
@@ -132,14 +130,26 @@ Suppose they are not adjacent.  It means that we cannot replace a basic variable
 
 \noindent
 \textbf{(b)}
+Consider the following parametric programming problem: \\
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} && -x_1 - x_2 - x_3 + \theta x_4 - \theta x_5 \\
+& \text{subject to} &&  x_1 + x_2 + x_3 = 1\\
+& & & x_1 + x_4 = 1 \\
+& & & x_2 + x_5 = 1 \\
+& & &\mathbf{x \geq 0}
+\end{aligned}
+\end{equation*}
 
-
+\noindent
+Let $\theta^* = 0$.  It is clear that (0, 1, 0, 1, 0) can be our $\mathbf{x^1}$, our unique solution for $\theta < 0$.   (1, 0, 0, 0, 1) can be $\mathbf{x^3}$, the unique optimal BFS for $\theta > 0$.   And our $\mathbf{x^2}$ is (0, 0, 1, 1, 1) for $\theta = 0$.  Clearly, since none of these BFS are adjacent. \\
 
 \section*{5.14}
 \textbf{(a)} Suppose that a certain basis is optimal for $\theta = -10$ and for $\theta = 10$.  Prove that the same basis is optimal for $\theta = 5$.  \\
 
 \noindent
-$\mathbf{(c - 10d)' x = (c + 10d)' x \Rightarrow -10d'x = 10d'x \Rightarrow 20d'x = 0 \Rightarrow d'x = 0}$.  Therefore, $5 \mathbf{d'x} = 0$ and hence, 5 is an optimal theta for the same basis.  Now, we just need to check feasibility and since $5 \in [-10, 10]$, we know that $\mathbf{Ax = b} + \theta \mathbf{f}$. \\
+$\mathbf{(c - 10d)' x = (c + 10d)' x \Rightarrow -10d'x = 10d'x \Rightarrow 20d'x = 0 \Rightarrow d'x = 0}$.  The same idea holds for $\mathbf{Ax = b + \theta f}$.  Therefore, $5 \mathbf{d'x} = 0$ and hence, 5 is an optimal theta for the same basis.  
+Now,  $5 \in [-10, 10]$, we know that $\mathbf{Ax = b} + \theta \mathbf{f}$. \\
 
 \noindent
 \textbf{(b)}  Show that $f(\theta)$ is a piecewise quadratic function of $\theta$.  Give an upper bound on the number of "pieces". \\
@@ -160,14 +170,14 @@ If $\mathbf{x} \in \mathbb{R}^n$, then, the number of "pieces" $\leq n$. \\
 \end{aligned}
 \end{equation*}
 
-Let $\mathbf{B}$ be an optimal basis for $\theta = 1$ and assume that $\theta > 0$.  All nonnegative $\theta$ satisfying the feasibility and optimality conditions 
-
+\noindent
+Let $\mathbf{B}$ be an optimal basis for $\theta = 1$ and assume that $\theta > 0$.  $\mathbf{d' - d'_B B^{-1} A \geq 0 \text{ and } B^{-1}f \geq 0}$.  Hence for nonnegative $\theta$ satisfying $\theta \mathbf{d' - d'_B B^{-1} A \geq 0 \text{ and } } \theta \mathbf{B^{-1}f \geq 0}$ keeps this same basis optimal. \\
 
 \noindent
 \textbf{(d)} Is $f(\theta)$ convex, concave, or neither? \\
 
 \noindent
-$f(\theta)$ is a concave 
+$f(\theta)$ can be neither.  Consider $\mathbf{b, f = 0}$. \\
 
 \section*{6.1}
 Consider the cutting stock probelm.  Use an optimal solution to the linear programming problem (6.4) to construct a feasible solution for the corresponding integer programming problem, whose cost differs from the optimal cost by no more than $m$.  \\
@@ -186,16 +196,31 @@ The dual can be formulated as follows:\\
 \begin{equation*}
 \begin{aligned}
 & \text{maximize} && \mathbf{p'b} \\
-& \text{subject to} &&  \mathbf{p'  \begin{bmatrix} \mathbf{D_1} \\\mathbf{0} \end{bmatrix} \leq c_1}
+& \text{subject to} &&  \mathbf{p'  \begin{bmatrix} \mathbf{D_1} \\\mathbf{0} \end{bmatrix} \leq c_1'}
  \\
-& &&  \mathbf{p'  \begin{bmatrix} \mathbf{0} \\ \mathbf{D_2} \end{bmatrix} \leq c_2} \\
-& &&  \mathbf{p'  \begin{bmatrix} \mathbf{F_1} \\ \mathbf{F_2} \end{bmatrix} = c_0} \\
+& &&  \mathbf{p'  \begin{bmatrix} \mathbf{0} \\ \mathbf{D_2} \end{bmatrix} \leq c_2'} \\
+& &&  \mathbf{p'  \begin{bmatrix} \mathbf{F_1} \\ \mathbf{F_2} \end{bmatrix} = c_0'} \\
 & & &\mathbf{p \geq 0}
 \end{aligned}
 \end{equation*}
 
 
 \noindent
-Using the Dantzig-Wolfe decomposition
+We can see that the dual is in the Dantzig-Wolfe form:
+\begin{equation*}
+\begin{aligned}
+& \text{maximize} && \mathbf{p_1' b_1 + p_2' b_2} \\
+& \text{subject to} &&  \mathbf{F_1 p_1 + F_2 p_2 = c_o} \\
+& & & \mathbf{D_1 p_1 \leq c_1} \\
+& & & \mathbf{D_2 p_2 \leq c_2} \\
+& & & \mathbf{p_1, p_2 \geq 0}
+\end{aligned}
+\end{equation*}
+
+\noindent
+We have two subproblems that are generalized out of this form: $\mathbf{b_1' - q'F_1 p_1}$ being minimized subject to $\mathbf{p_1} \in P_1$ meaning that $\mathbf{D_1 p_1 \leq c_1}$.  Our second subproblem is analogous to the first, except using $i = 2$. \\
+
+\noindent
+\textbf{(b)} Rewrite the first set of constraints in the form $\mathbf{D_1 x_1 + F_1 y+1 \geq b_1}$ and $\mathbf{D_2 x_2 + F_2 y_2 \geq b_2}$, together with a constraint relating $\mathbf{y_1 \text{to } y_2}$.  Discuss how to apply Dantzig-Wolfe decomposition and describe the structure of the subproblems solved during a typical iteration.
 
 \end{document}
