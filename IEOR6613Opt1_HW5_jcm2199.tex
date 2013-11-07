@@ -207,6 +207,30 @@ We can see that the dual is in the Dantzig-Wolfe form:
 We have two subproblems that are generalized out of this form: $\mathbf{b_1' - q'F_1 p_1}$ being minimized subject to $\mathbf{p_1} \in P_1$ meaning that $\mathbf{D_1 p_1 \leq c_1}$.  Our second subproblem is analogous to the first, except using $i = 2$. \\
 
 \noindent
-\textbf{(b)} Rewrite the first set of constraints in the form $\mathbf{D_1 x_1 + F_1 y+1 \geq b_1}$ and $\mathbf{D_2 x_2 + F_2 y_2 \geq b_2}$, together with a constraint relating $\mathbf{y_1 \text{to } y_2}$.  Discuss how to apply Dantzig-Wolfe decomposition and describe the structure of the subproblems solved during a typical iteration.
+\textbf{(b)} Rewrite the first set of constraints in the form $\mathbf{D_1 x_1 + F_1 y_1 \geq b_1}$ and $\mathbf{D_2 x_2 + F_2 y_2 \geq b_2}$, together with a constraint relating $\mathbf{y_1 \text{to } y_2}$.  Discuss how to apply Dantzig-Wolfe decomposition and describe the structure of the subproblems solved during a typical iteration. \\
+
+\noindent
+Let's rewrite the LP as follows: 
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} && \mathbf{c_1' x_1 + c_2' x_2 + c_0' y_1 + c_0' y_2} \\
+& \text{subject to} && \mathbf{\begin{bmatrix} \mathbf{0} & \mathbf{0} \\ 
+\mathbf{0} & \mathbf{e}
+\end{bmatrix} z_1 - \begin{bmatrix} \mathbf{0} & \mathbf{0} \\ 
+\mathbf{0} & \mathbf{e}
+\end{bmatrix} z_2 = 0} \\
+&&&  \begin{bmatrix} \mathbf{D_1} & \mathbf{0} \\ 
+\mathbf{0} & \mathbf{F_1}
+\end{bmatrix} \mathbf{z_1 \geq b_1} \\
+&&&  \begin{bmatrix} \mathbf{D_2} & \mathbf{0} \\ 
+\mathbf{0} & \mathbf{F_2}
+\end{bmatrix} \mathbf{z_2 \geq b_2} \\
+\end{aligned}
+\end{equation*}
+
+\noindent
+Having defined $\mathbf{z_i = [x_i \; y_i]}$ for $i = 1,2$, we have reformulated the primal into Dantiz-Wolfe decomposition.  
+
+
 
 \end{document}
