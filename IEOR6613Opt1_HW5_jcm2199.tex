@@ -110,14 +110,13 @@ We have $\mathbf{x_B} + \delta \mathbf{g} \geq 0 \Rightarrow
 \textbf{(e)}  Assume that the basis associated with this tableau is optimal.  Suppose also that $c_1$ in the original problem is replaced by $c_1 + \epsilon$.  Give upper and lower bounds on $\epsilon$ so that this basis remains optimal. \\
 
 \noindent
-Primal feasibility is not affected.  The new optimality condition is:  $(\mathbf{c_B} + \epsilon \mathbf{e_1)' B^{-1} A_i \leq } c_i, \; \forall i \neq j = 1$. $x_2, x_4$ arebasic and their reduced cost will remain zero, thus, we look at $x_3$ and $x_5.$ We get the following conditions: \\
+Primal feasibility is not affected.  The new optimality condition is:  $(\mathbf{c_B} + \epsilon \mathbf{e_1)' B^{-1} A_i \leq } c_i, \; \forall i \neq j = 1$. $x_2, x_4$ are basic and their reduced cost will remain zero, thus, we look at $x_3$ and $x_5.$ We get the following conditions: \\
 \begin{equation*}
 \begin{aligned}
 \epsilon \leq \bar{c}_3 / {4} \\
 \epsilon \leq \bar{c}_5 / \delta
 \end{aligned}
 \end{equation*}
-
 
 \section*{5.12}
 \textbf{(a)}  Suppose that for some value of $\theta$, there are exactly two distinct basic feasible solutions that are optimal.  Show that they must be adjacent.  \\
@@ -148,18 +147,22 @@ Let $\theta^* = 0$.  It is clear that (0, 1, 0, 1, 0) can be our $\mathbf{x^1}$,
 \textbf{(a)} Suppose that a certain basis is optimal for $\theta = -10$ and for $\theta = 10$.  Prove that the same basis is optimal for $\theta = 5$.  \\
 
 \noindent
-$\mathbf{(c - 10d)' x = (c + 10d)' x \Rightarrow -10d'x = 10d'x \Rightarrow 20d'x = 0 \Rightarrow d'x = 0}$.  The same idea holds for $\mathbf{Ax = b + \theta f}$.  Therefore, $5 \mathbf{d'x} = 0$ and hence, 5 is an optimal theta for the same basis.  
-Now,  $5 \in [-10, 10]$, we know that $\mathbf{Ax = b} + \theta \mathbf{f}$. \\
+$\mathbf{(c - 10d)' x = (c + 10d)' x \Rightarrow -10d'x = 10d'x \Rightarrow 20d'x = 0 \Rightarrow d'x = 0}$.  The same idea holds for $\mathbf{Ax = b + \theta f}$.  Therefore, $5 \mathbf{d'x} = 0$.  As the optimality and feasibility conditions hold, the same basis remains optimal. \\
 
 \noindent 
-Perhaps the more elegant solution would have been to multiply the objective function and constraints for $\theta = -10$ by $\frac{1}{4}$ and those for $\theta = 10$ by $\frac{3}{4}$.  By summing the linear combinations of the objective function and constraint equations, it is clear that we maintain optimality and feasibility for $\theta = 5$.  
+Perhaps the more elegant solution would have been to multiply the objective function and constraints for $\theta = -10$ by $\frac{1}{4}$ and those for $\theta = 10$ by $\frac{3}{4}$.  By summing the linear combinations of the objective function and constraint equations, it is clear that we maintain optimality and feasibility for $\theta = 5$.  \\
 
 \noindent
 \textbf{(b)}  Show that $f(\theta)$ is a piecewise quadratic function of $\theta$.  Give an upper bound on the number of "pieces". \\
 
 \noindent
-If $\mathbf{x} \in \mathbb{R}^n$, then, the number of "pieces" $\leq n$. \\
+Let $\mathbf{B_j^{-1}}$ be an arbitrary basis.  Let us substitute the constraints into the objective function. \\
+$f(\theta) = \underset{j}{\text{min}} \{ \mathbf{(c+ \theta d)' B_j^{-1}(b + \theta f)}\}$ where $\mathbf{B_j^{-1} (b + \theta f) \geq 0}$. \\
+$f(\theta) = \underset{j}{\text{min}} \{ \mathbf{ d' B_j^{-1} f \theta^2 + (c'B_j^{-1} f + d'B_j^{-1} b)\theta  + c' B_j^{-1} b }\} $ where $\mathbf{B_j^{-1} (b + \theta f) \geq 0}$. \\
+Clearly, $f(\theta)$ is a piecewise quadratic function of $\theta$.  \\
 
+\noindent
+Let $K$ be the number of possible bases (the cardinality $|j|$.  The upper bound on the number of pieces is $2K$.\\
 
 \noindent
 \textbf{(c)}  Let $\mathbf{b = 0 \text{ and } c = 0}$.  Suppose that a certain basis is optimal for $\theta = 1$.  For what other nonnegative values of $\theta$ is that same basis optimal? \\
@@ -180,13 +183,13 @@ Let $\mathbf{B}$ be an optimal basis for $\theta = 1$ and assume that $\theta > 
 \textbf{(d)} Is $f(\theta)$ convex, concave, or neither? \\
 
 \noindent
-$f(\theta)$ can be neither.  Consider $\mathbf{b, f = 0}$. \\
+$f(\theta)$ can be neither.  Consider $\mathbf{b, f = 0}$.
 
 \section*{6.1}
 Consider the cutting stock probelm.  Use an optimal solution to the linear programming problem (6.4) to construct a feasible solution for the corresponding integer programming problem, whose cost differs from the optimal cost by no more than $m$.  \\
 
 \noindent
-Since there are $m$ constraints, we apply the ceiling cunction to our decision variables, which will round up the non-integer decision variables to the next integer.  At most $m$ non-zero variables can be rounded up and thus, the IP-optimal cost $\leq$ LP-optimal cost + $m$. \\
+Apply the ceiling cunction to our decision variables, which will round up the non-integer decision variables to the next integer.  At most $m$ non-zero variables can be rounded up and thus, the IP-optimal cost $\leq$ LP-optimal cost + $m$.
 
 \section*{6.4}
 
@@ -195,7 +198,6 @@ Since there are $m$ constraints, we apply the ceiling cunction to our decision v
 Form the dual problem and explain how Dantzig-wolfe decomposition can be applied to it.  What is the structure of the subproblems solved during a typical iteration? \\
 
 \noindent
-We can see that the dual is in the Dantzig-Wolfe form:
 \begin{equation*}
 \begin{aligned}
 & \text{maximize} && \mathbf{p_1' b_1 + p_2' b_2} \\
@@ -213,7 +215,6 @@ We have two subproblems that are generalized out of this form: $\mathbf{b_1' - q
 \textbf{(b)} Rewrite the first set of constraints in the form $\mathbf{D_1 x_1 + F_1 y_1 \geq b_1}$ and $\mathbf{D_2 x_2 + F_2 y_2 \geq b_2}$, together with a constraint relating $\mathbf{y_1 \text{to } y_2}$.  Discuss how to apply Dantzig-Wolfe decomposition and describe the structure of the subproblems solved during a typical iteration. \\
 
 \noindent
-Let's rewrite the LP as follows: 
 \begin{equation*}
 \begin{aligned}
 & \text{minimize} && \mathbf{c_1' x_1 + c_2' x_2 + c_0' y_1 + c_0' y_2} \\
