@@ -151,6 +151,9 @@ Let $\theta^* = 0$.  It is clear that (0, 1, 0, 1, 0) can be our $\mathbf{x^1}$,
 $\mathbf{(c - 10d)' x = (c + 10d)' x \Rightarrow -10d'x = 10d'x \Rightarrow 20d'x = 0 \Rightarrow d'x = 0}$.  The same idea holds for $\mathbf{Ax = b + \theta f}$.  Therefore, $5 \mathbf{d'x} = 0$ and hence, 5 is an optimal theta for the same basis.  
 Now,  $5 \in [-10, 10]$, we know that $\mathbf{Ax = b} + \theta \mathbf{f}$. \\
 
+\noindent 
+Perhaps the more elegant solution would have been to multiply the objective function and constraints for $\theta = -10$ by $\frac{1}{4}$ and those for $\theta = 10$ by $\frac{3}{4}$.  By summing the linear combinations of the objective function and constraint equations, it is clear that we maintain optimality and feasibility for $\theta = 5$.  
+
 \noindent
 \textbf{(b)}  Show that $f(\theta)$ is a piecewise quadratic function of $\theta$.  Give an upper bound on the number of "pieces". \\
 
@@ -229,7 +232,9 @@ Let's rewrite the LP as follows:
 \end{equation*}
 
 \noindent
-Having defined $\mathbf{z_i = [x_i \; y_i]}$ for $i = 1,2$, we have reformulated the primal into Dantiz-Wolfe decomposition.  
+Having defined $\mathbf{z_i = [x_i \; y_i]}$ for $i = 1,2$ and $\mathbf{M = } \begin{bmatrix} \mathbf{0} & \mathbf{0} \\ 
+\mathbf{0} & \mathbf{e}
+\end{bmatrix}$ , we have reformulated the primal into Dantiz-Wolfe decomposition.  The subproblems look as follows:  minimize $\mathbf{(c_1' + c_0' - q'M) z_i}$ subject to $\mathbf{z_i} \in P_i$ for $i = 1,2$.    
 
 
 
