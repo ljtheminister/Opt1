@@ -14,8 +14,26 @@
 \section*{6.6}
 Consider a linear programming problem in standard form in which the matrix $\mathbf{A}$ has the following structure: \\
 $$ \mathbf{A = } 
-\begin{bmatrix} \mathbf{A_{00}} & A_{01} & \ldots & \ldots & A_{0n} \\
-				\mathbf{A_{10}} & \mathbf{A_{11}} & \ldots & \ldots & \ldots	
-\end{bmatrix} $$
+\begin{bmatrix} \mathbf{A_{00}} & \mathbf{A_{01}} & \cdots & \cdots & \mathbf{A_{0n}} \\
+				\mathbf{A_{10}} & \mathbf{A_{11}} & \cdots & \cdots & \cdots	\\
+				\vdots & & \mathbf{A_{22}} \\
+				\vdots & & & \ddots \\
+				\mathbf{A_{n0}} & & & & \mathbf{A_{nn}}
+\end{bmatrix} $$. \\
+(All submatrices other than those indicated are zero.)  Show how a decomposition method can be applied to a problem with this structure.  Do not provide details, as long as you clearly indicate the master probelm and the subproblems.  \emph{Hint:} Decompose twice. \\
+
+\noindent
+
+
+\section*{6.8}  
+Consider the Dantzig-Wolfe decomposition method and suppose that we are at a basic feasibile solution to the master problem. \\
+
+\noindent
+\textbf{(a)} Show that at least one of the variables $\lambda_1^j$ must be a basic variable. \\
+
+\noindent
+\textbf{(b)}  Let $r_1$ be the current value of the simplex multipler associated with the first convexity constraint (6.12), and let $z_1$ be the optimal cost in the first subproblem.  Show that $z_1 \leq r_1$.  
+
+
 
 \end{document}
