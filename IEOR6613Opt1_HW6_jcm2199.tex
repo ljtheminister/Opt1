@@ -34,6 +34,14 @@ Consider the Dantzig-Wolfe decomposition method and suppose that we are at a bas
 \noindent
 \textbf{(b)}  Let $r_1$ be the current value of the simplex multipler associated with the first convexity constraint (6.12), and let $z_1$ be the optimal cost in the first subproblem.  Show that $z_1 \leq r_1$.  
 
+\section*{7.1 (The caterer problem)}
+A catering company must provide to a client $r_i$ tablecloths on each of $N$ consecutive days.  The catering company can buy new tablecloths at a price of $p$ dollars each, or launder the used ones.  Laundering can be done at a fast service facility that makes the tablecloths unavailable for the nexet $n$ days and costs $f$ dollars per tablecloth, or at a slower facility that makes tablecloths unavailable for the next $m$ days (with $m > n$) at a cost of $g$ dollars per tablecloth ($g < f$).  The caterer's problem is to decide how to meet the  client's demand at minimum cost, starting with no tablecloths and under the assumption that any leftover tablecloths have no value. \\
+
+\noindent \textbf{(a)}
+Show that the problem can be formulated as a network flow problem.  \emph{Hint:}  Use a node corresponding to clean tablecloths and a node corresponding to dirty tablecloths for each day; more nodes may also be needed. \\
+
+\noindent \textbf{(b)}
+Show explicitly the form of hte network if $N = 5, n=1, m=3$.  
 
 
 \end{document}
