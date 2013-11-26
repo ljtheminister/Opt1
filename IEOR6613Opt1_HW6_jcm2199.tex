@@ -1,7 +1,7 @@
 \documentclass{article}
 
 \usepackage[margin=1.0in]{geometry}
-\usepackage{amssymb, amsmath, parallel, mathtools, graphicx, array}
+\usepackage{amssymb, amsmath, parallel, mathtools, graphicx, array, pdfpages}
 
 \begin{document}
 
@@ -23,7 +23,10 @@ $$ \mathbf{A = }
 (All submatrices other than those indicated are zero.)  Show how a decomposition method can be applied to a problem with this structure.  Do not provide details, as long as you clearly indicate the master probelm and the subproblems.  \emph{Hint:} Decompose twice. \\
 
 \noindent
+The solution here is to perform a two-step sequential decomposition method by performing Dantzig-Wolfe's and then the D-W method again on the dual.  Since we are dealing with linear programs, this is equivalent to performing D-W and then Benders' decompositions.
 
+
+ the cross decomposition technique which combines two decomposition methods:  Benders' and Dantzig-Wolfe's decomposition methods where one performs row generation and the other does column generation.  
 
 \section*{6.8}  
 Consider the Dantzig-Wolfe decomposition method and suppose that we are at a basic feasibile solution to the master problem. \\
@@ -34,14 +37,64 @@ Consider the Dantzig-Wolfe decomposition method and suppose that we are at a bas
 \noindent
 \textbf{(b)}  Let $r_1$ be the current value of the simplex multipler associated with the first convexity constraint (6.12), and let $z_1$ be the optimal cost in the first subproblem.  Show that $z_1 \leq r_1$.  
 
+\section*{Additional Question (Dantzig-Wolfe decomposition)}
+\includepdf[pages={1-3}]{Additional_Problem}
+
+
+
 \section*{7.1 (The caterer problem)}
 A catering company must provide to a client $r_i$ tablecloths on each of $N$ consecutive days.  The catering company can buy new tablecloths at a price of $p$ dollars each, or launder the used ones.  Laundering can be done at a fast service facility that makes the tablecloths unavailable for the nexet $n$ days and costs $f$ dollars per tablecloth, or at a slower facility that makes tablecloths unavailable for the next $m$ days (with $m > n$) at a cost of $g$ dollars per tablecloth ($g < f$).  The caterer's problem is to decide how to meet the  client's demand at minimum cost, starting with no tablecloths and under the assumption that any leftover tablecloths have no value. \\
 
 \noindent \textbf{(a)}
 Show that the problem can be formulated as a network flow problem.  \emph{Hint:}  Use a node corresponding to clean tablecloths and a node corresponding to dirty tablecloths for each day; more nodes may also be needed. \\
 
+The caterer problem can be represented as a minimum-cost flow problem:  The source node $s$ has a cost of $p$ and capacity of $r_i$, representing the store/supply node for new napkins.  For each day, there is a sink (demand) node and a source (supply) node, $d_i$ and $s_i$, respectively, for $i = 1, \ldots, N$.   The sink nodes have supply $b(d_i) = -r_i$; the source nodes have supply $b(s_i) = r_i$, and the source node $s$ has $b(s) = \sum r_i$.\\
+  
+From node $s$, we can formulate edges to each $d_i$ with cost $p$ and capacity $r_i$.  From  each node $s_i$, draw edges to node$d_{i+n}$ with cost $f$ and capacity $r_i$ as well to node $d_{i+m}$ with  cost $g$ and capacity $r_i$.
+
 \noindent \textbf{(b)}
-Show explicitly the form of hte network if $N = 5, n=1, m=3$.  
+Show explicitly the form of the network if $N = 5, n=1, m=3$.   \\
+
+
+\section*{7.6 (Equivalence of capacitated network flow and transportation problems)}
+Consider a capacitated network flow problem defined by a graph $G = (N,A)$ and the data $u_{ij}, c_{ij}, b_i$.  Assume that the capacity $u_{ij}$ of every arc is finite.  We construct a related transportation problem as follows.  For every arc $i,j \in A$, we form a source node in the transportation problem with supply $u_{ij}$.  For every node $i \in N$, we construct a sink node with demand $\sum_{\{k | (i,k) \in A \}} u_{ik} - b_i$.  At every supply node $(i,j)$ there are two outgoing infinite capacity arcs:  one goes to demand node $i$, and its cost coefficient is 0; the other goes to demand node $j$ and its cost coefficient is $c_{ij}$.  Show that there is a one-to-one ocrrespondence betrwen feasible flows in the two problems and the cost of the two corresponding flows is the same. \\
+
+The intuition of one-to-one correspondence between the two problems concerns the idea of adding a new node to accomodate an arc which has finite (an upper bound $u_{ij}$ on its flow capacity.
+
+
+\section*{7.13}
+Suppose that we are given a noninteger optimal solution to an uncapacitated network flow problem with integer data. \\
+
+\noindent \textbf{(a)}  Show that there exists a cycle with every arc on the cycle carrying a positive flow.  What can you say about the cost of such a cycle? \\
+
+\noindent
+Let $e \in E$ such that the flow $f_{e}$ is fractional.  Suppose $e$ is not in a cycle, which means it is part of a tree, or more specifically, a directed acyclic graph (DAG), $T$.  Conservation of flow dictates that inflow equals outflow.  The data is integral meaning that the inflow and outflow at each node in $T$ is integral.  At some leaf node in this tree, the conservation of flow must be violated for the data to remain integral.  Since $e$'s outflow is fractional, the DAG structure containing e has fractional inflow.  Therefore, $e$ must be in a cycle, $C$. \\
+
+\noindent
+Suppose not every edge in the cycle C has positive flow, or nonfractional flow.  Then, we violate conservation of flow.  Therefore, C is a cycle for which each edge has positive, fractional flow.\\
+
+\noindent
+The cost of the cycle is certainly nonnegative.  \\
+
+\noindent \textbf{(b)}  Suggest a method for constructing an integer optimal solution, without solving the problem from scratch.  \emph{Hint:}  Remove cycles. \\
+
+\noindent
+Take the noninteger optimal solution and by removing all the cycles, all flows are now integral.
+
+\section*{7.26 (Birkhoff-von Neumann theorem)}
+A square matrix $\mathbf{A}$ is called \emph{doubly stochastic} if $\sum_{i=1}^n a_{ij} = 1$ for all $j$, $\sum{j=1}^n = 1$ for all $i$, and all entries are nonnegative.  A matrix $\mathbf{P}$ is called a \emph{permutation matrix} if each row and each column has exactly one nonzero entry, which is equal to 1. \\
+
+\noindent \textbf{(a)}
+Let $\mathbf{P}_1, \ldots, \mathbf{P}_k$ be permuations, and let $\lambda_1, \ldots, \lambda_k$ be nonnegative scalars that sum to 1.  Show that $\sum_{i=1}^k \lambda_i \mathbf{P}_i$ is doubly stochastic. \\
+
+\noindent
+Each $\mathbf{P}$ is doubly stochastic:  $\displaystyle \sum_{i=1}^n \mathbf{P}_{ij}^{(m)} = 1$, $\displaystyle \sum_{j=1}^n \mathbf{P}_{ij}^{(m)} = 1$.  Each row of $\displaystyle \sum_{i=1}^k \lambda_i \mathbf{P}_i = 1$ since each row of $\mathbf{P}_i$ sums to one.  This is true for each column.  Therefore, $\displaystyle \sum_{i=1}^k \lambda_i \mathbf{P}_i$ is doubly stochastic. \\
+
+\noindent \textbf{(b)}
+Let $\mathbf{A}$ be a doubly stochastic matrix.  Show that there exist permutation matrices $\mathbf{P}_1, \ldots, \mathbf{P}_k$, and nonnegative scalars $\lambda_1, \ldots, \lambda_k$ that sum to 1, such that $\mathbf{A} = \sum_{i=1}^k \lambda_i \mathbf{P}_i = 1$.  \emph{Hint:} Consider the assignment problem. \\
+
+\noindent
+Find $\lambda_k$ = min $\{ \mathbf{A}_{ij} \neq 0\}$.  $\lambda_k$ is the smallest nonzero element of $\mathbf{A}$.  Construct a permutation matrix where $\mathbf{P}_{ij} = 0$ where $\mathbf{A_{ij}}=0$.  Subtract from the doubly stochastic matrix $\mathbf{A}$, $\lambda_k \mathbf{P}$.  Continue to do this until $\mathbf{A}$ is a zero matrix.  The $\lambda_k$'s for $k = 1, \ldots, K$ are positive scalars which sum up to 1.  Clearly, a doubly stochastic matrix can be represented by a convex combination of permutation matrices.\\ 
 
 
 \end{document}
