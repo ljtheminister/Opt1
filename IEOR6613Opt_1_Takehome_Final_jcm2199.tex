@@ -1,0 +1,184 @@
+\documentclass{article}
+
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb, amsmath, parallel, mathtools, graphicx, array, pdfpages}
+
+\begin{document}
+
+\title{IEOR 6613 - Optimization I\\ HW 6:  6.6, 6.8, 7.1, 7.6, 7.13, 7.26}
+
+\author{John Min\\ jcm2199}
+\date{November 20, 2013}
+\maketitle
+
+\section*{6.6}
+Consider a linear programming problem in standard form in which the matrix $\mathbf{A}$ has the following structure: \\
+$$ \mathbf{A = } 
+\begin{bmatrix} \mathbf{A_{00}} & \mathbf{A_{01}} & \cdots & \cdots & \mathbf{A_{0n}} \\
+				\mathbf{A_{10}} & \mathbf{A_{11}} & \cdots & \cdots & \cdots	\\
+				\vdots & & \mathbf{A_{22}} \\
+				\vdots & & & \ddots \\
+				\mathbf{A_{n0}} & & & & \mathbf{A_{nn}}
+\end{bmatrix} $$. \\
+(All submatrices other than those indicated are zero.)  Show how a decomposition method can be applied to a problem with this structure.  Do not provide details, as long as you clearly indicate the master probelm and the subproblems.  \emph{Hint:} Decompose twice. \\
+
+\noindent
+The solution here is to perform the Dantzig-Wolfe decomposition on the original problem and then using the Dantzig-Wolfe decomposition again to solve the subproblems of the master problem. \\
+
+\noindent
+Let us rewrite the problem:  \\
+
+\noindent
+$$\mathbf{D} = [\mathbf{A_{00}} \; \mathbf{A_{01}} \; \ldots \; \ldots \; \mathbf{A_{0n}} ]$$ \\ $$\mathbf{F = } \begin{bmatrix} \mathbf{A_{00}} & \mathbf{A_{01}} & \cdots & \cdots & \mathbf{A_{0n}} \\
+				\mathbf{A_{10}} & \mathbf{A_{11}} & \cdots & \cdots & \cdots	\\
+				\vdots & & \mathbf{A_{22}} \\
+				\vdots & & & \ddots \\
+				\mathbf{A_{n0}} & & & & \mathbf{A_{nn}}
+\end{bmatrix} $$ \\
+
+\noindent
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} && \mathbf{c'x} \\
+& \text{subject to} && \mathbf{Dx = b_0}\\
+& &&  \mathbf{Fx = [b_1 \ldots b_n]'} \\
+&&& \mathbf{x \geq 0}
+\end{aligned}
+\end{equation*}
+
+\pagebreak
+\noindent
+Let's organize the original problem: \\
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} && \mathbf{c'x} \\
+& \text{subject to} && \mathbf{Dx = b_0}\\
+& &&  \mathbf{Fx = [b_1 \ldots b_n]'} \\
+&&& \mathbf{x \geq 0}
+\end{aligned}
+\end{equation*}
+
+\noindent
+Our $\mathbf{x}$ can be represented as $\mathbf{x_i = \sum \lambda_i^k x_i^k + \sum \theta_i^k w_i^k}$. \\
+
+\noindent
+Let's reformulate the problem into the master problem: \\
+
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} && \mathbf{\sum \lambda c'x + \sum \theta c'x} \\
+& \text{subject to} && \mathbf{\sum \lambda Dx + \sum \theta Dw= b}\\
+&&& \sum \lambda = 1 \\
+&&& \lambda, \theta \geq 0
+\end{aligned}
+\end{equation*}
+
+\noindent
+The subproblem will have the following form: \\
+\begin{equation*}
+\begin{aligned}
+& \text{minimize} && \mathbf{(c - q'D)x} \\
+& \text{subject to} && \mathbf{Fx = [b_1 \dots b_n]}\\
+\end{aligned}
+\end{equation*}
+
+\noindent
+We will take this subproblem primal and convert it into its dual form, which will be in Dantzig-Wolfe decomposition form. \\
+\begin{equation*}
+\begin{aligned}
+& \text{maximize} && \mathbf{p'b} \\
+& \text{subject to} && \mathbf{p'} 
+\begin{bmatrix} 
+				\mathbf{A_{10}} & \mathbf{A_{11}} & \cdots & \cdots & \cdots	\\
+				\vdots & & \mathbf{A_{22}} \\
+				\vdots & & & \ddots \\
+				\mathbf{A_{n0}} & & & & \mathbf{A_{nn}}
+\end{bmatrix}
+\mathbf{\leq [c_1 \ldots c_n]'}
+\end{aligned}
+\end{equation*}
+
+
+\section*{6.8}  
+Consider the Dantzig-Wolfe decomposition method and suppose that we are at a basic feasibile solution to the master problem. \\
+
+\noindent
+\textbf{(a)} Show that at least one of the variables $\lambda_1^j$ must be a basic variable. \\
+
+\noindent
+A constraint in the master program requires that the $\lambda^j$'s sum to unity.  Every $\lambda^j$ is nonnegative; at least one must be positive for the basic solution to be feasible. \\
+
+\noindent
+\textbf{(b)}  Let $r_1$ be the current value of the simplex multipler associated with the first convexity constraint (6.12), and let $z_1$ be the optimal cost in the first subproblem.  Show that $z_1 \leq r_1$.  \\
+
+\noindent
+For each block of the decomposition, we solve a minimization linear program in the subproblem, minimizing $\mathbf{(c_1' - q'D_1)x_1}$.  The reduced cost of of the variable $\lambda_1^j$ is $\mathbf{(c_1' - q' D_1) x_1^j} - r_i$.  If $\lambda_1^j$ is not optimal, then, there exists a BFS with negative reduced cost.  Therefore, $z_1 =  \mathbf{(c_1' - q' D_1) x_1^j} < r_1$.  Otherwise, the optimal cost of the subproblem equals the value of the simplex multiplier where the extreme point found from solving the subproblem is the same as $\lambda_1^j$ or there is a zero reduced cost path from $\lambda_1^j$ to reach this extreme point.  Hence, $z_1 \leq r_1$.   
+	
+
+\includepdf[pages={1-3}]{Additional_Problem}
+
+\section*{7.1 (The caterer problem)}
+A catering company must provide to a client $r_i$ tablecloths on each of $N$ consecutive days.  The catering company can buy new tablecloths at a price of $p$ dollars each, or launder the used ones.  Laundering can be done at a fast service facility that makes the tablecloths unavailable for the nexet $n$ days and costs $f$ dollars per tablecloth, or at a slower facility that makes tablecloths unavailable for the next $m$ days (with $m > n$) at a cost of $g$ dollars per tablecloth ($g < f$).  The caterer's problem is to decide how to meet the  client's demand at minimum cost, starting with no tablecloths and under the assumption that any leftover tablecloths have no value. \\
+
+\noindent \textbf{(a)}
+Show that the problem can be formulated as a network flow problem.  \emph{Hint:}  Use a node corresponding to clean tablecloths and a node corresponding to dirty tablecloths for each day; more nodes may also be needed. \\
+
+\noindent
+The caterer problem can be represented as a minimum-cost flow problem:  The source node $s$ has a cost of $p$ and capacity of $r_i$, representing the store/supply node for new napkins.  For each day, there is a sink (demand) node and a source (supply) node, $d_i$ and $s_i$, respectively, for $i = 1, \ldots, N$.   The sink nodes have supply $b(d_i) = -r_i$; the source nodes have supply $b(s_i) = r_i$, and the source node $s$ has $b(s) = \sum r_i$.\\
+ 
+\noindent 
+From node $s$, we can formulate edges to each $d_i$ with cost $p$ and capacity $r_i$.  From each node $s_i$, draw edges to node$d_{i+n}$ with cost $f$ and capacity $r_i$ as well to node $d_{i+m}$ with  cost $g$ and capacity $r_i$. \\
+
+\noindent \textbf{(b)}
+Show explicitly the form of the network if $N = 5, n=1, m=3$.   \\
+
+\begin{center}
+\includegraphics{Catering.pdf}
+\end{center}
+
+\pagebreak
+
+\section*{7.6 (Equivalence of capacitated network flow and transportation problems)}
+Consider a capacitated network flow problem defined by a graph $G = (N,A)$ and the data $u_{ij}, c_{ij}, b_i$.  Assume that the capacity $u_{ij}$ of every arc is finite.  We construct a related transportation problem as follows.  For every arc $i,j \in A$, we form a source node in the transportation problem with supply $u_{ij}$.  For every node $i \in N$, we construct a sink node with demand $\sum_{\{k | (i,k) \in A \}} u_{ik} - b_i$.  At every supply node $(i,j)$ there are two outgoing infinite capacity arcs:  one goes to demand node $i$, and its cost coefficient is 0; the other goes to demand node $j$ and its cost coefficient is $c_{ij}$.  Show that there is a one-to-one ocrrespondence betrwen feasible flows in the two problems and the cost of the two corresponding flows is the same. \\
+
+\noindent
+The transportation problem is a special case of uncapacitated network flows (G = (V,E)) where the set of supply nodes, $S = \{i \in V: b_i > 0\}$, demand nodes $D = V \backslash S$, and $E = \{(i,j): i \in S, j \in D\}$.  A flow vector $f$ is feasible if $f \geq 0$ and the flow contraints for each vertex $i$ are satisfied:  $\sum_k f_{ik} - \sum_k f_{ki} = b_i \forall i$.  \\.  It is clear that there exists a one-to-one correspondence between an uncapacitated network flow and the properly constructed transportation graph.
+
+\noindent
+Assume that the network flow problem is uncapacitated temporarily.  The intuition of one-to-one correspondence between the capacitated network flow and transportation problems concerns the idea of adding a new node to accomodate an arc which has finite flow capacity, i.e. an upper bound on $u_{ij}$ in Figure 7.36.  Let us add a source node and two outgoing infinite capacity arcs as described in Figure 7.36 with all of the flows flowing thru the arc that has cost $c_{ij}$, not on the 0-cost edge.  Now, convert the uncapacitated flow and set the upper bounds.  Any flow $f_ij > u_ij$, we set to be the upper bound and direct the difference on the 0-cost arc.  It is clear that we can map this transportation problem back to the network flow because we can choose to ignore the flows on the 0-cost arcs of these transportation problems and remove the sink and conservation of flow is still maintained.  
+
+\section*{7.13}
+Suppose that we are given a noninteger optimal solution to an uncapacitated network flow problem with integer data. \\
+
+\noindent \textbf{(a)}  Show that there exists a cycle with every arc on the cycle carrying a positive flow.  What can you say about the cost of such a cycle? \\
+
+\noindent
+Let $e \in E$ such that the flow $f_{e}$ is fractional.  Suppose $e$ is not in a cycle, which means it is part of a tree, or more specifically, a directed acyclic graph (DAG), $T$.  Conservation of flow dictates that inflow equals outflow.  The data is integral meaning that the inflow and outflow at each node in $T$ is integral.  At some leaf node in this tree, the conservation of flow must be violated for the data to remain integral.  Since $e$'s outflow is fractional, the DAG structure containing e has fractional inflow.  Therefore, $e$ must be in a cycle, $C$, where each edge has positive flow.\\
+
+\noindent
+The cost of the cycle is certainly nonnegative.  \\
+
+\noindent \textbf{(b)}  Suggest a method for constructing an integer optimal solution, without solving the problem from scratch.  \emph{Hint:}  Remove cycles. \\
+
+From part (a), we know that an edge with noninteger flow is part of a cycle.  We want to remove these cycles and redirect flow such that we reach an integer optimal solution.  For each cycle, there are two paths of equal cost from some vertex $s$ to $t$.  For each of these cycles, find the edge(s) with the smallest (positive) flow in the cycle and delete that edge, pushing flow through an alternative route.  Repeat until an integer solution is reached.  
+
+\noindent
+Take the noninteger optimal solution and by removing all the cycles, all flows are now integral.
+
+\section*{7.26 (Birkhoff-von Neumann theorem)}
+A square matrix $\mathbf{A}$ is called \emph{doubly stochastic} if $\sum_{i=1}^n a_{ij} = 1$ for all $j$, $\sum{j=1}^n = 1$ for all $i$, and all entries are nonnegative.  A matrix $\mathbf{P}$ is called a \emph{permutation matrix} if each row and each column has exactly one nonzero entry, which is equal to 1. \\
+
+\noindent \textbf{(a)}
+Let $\mathbf{P}_1, \ldots, \mathbf{P}_k$ be permuations, and let $\lambda_1, \ldots, \lambda_k$ be nonnegative scalars that sum to 1.  Show that $\sum_{i=1}^k \lambda_i \mathbf{P}_i$ is doubly stochastic. \\
+
+\noindent
+Each $\mathbf{P}$ is doubly stochastic:  $\displaystyle \sum_{i=1}^n \mathbf{P}_{ij}^{(m)} = 1$, $\displaystyle \sum_{j=1}^n \mathbf{P}_{ij}^{(m)} = 1$.  Each row of $\displaystyle \sum_{i=1}^k \lambda_i \mathbf{P}_i = 1$ since each row of $\mathbf{P}_i$ sums to one.  This is true for each column.  Therefore, $\displaystyle \sum_{i=1}^k \lambda_i \mathbf{P}_i$ is doubly stochastic. \\
+
+\noindent \textbf{(b)}
+Let $\mathbf{A}$ be a doubly stochastic matrix.  Show that there exist permutation matrices $\mathbf{P}_1, \ldots, \mathbf{P}_k$, and nonnegative scalars $\lambda_1, \ldots, \lambda_k$ that sum to 1, such that $\mathbf{A} = \sum_{i=1}^k \lambda_i \mathbf{P}_i = 1$.  \emph{Hint:} Consider the assignment problem. \\
+
+\noindent
+Find $\lambda_k$ = min $\{ \mathbf{A}_{ij} \neq 0\}$.  $\lambda_k$ is the smallest nonzero element of $\mathbf{A}$.  Construct a permutation matrix where $\mathbf{P}_{ij} = 0$ where $\mathbf{A_{ij}}=0$.  Subtract from the doubly stochastic matrix $\mathbf{A}$, $\lambda_k \mathbf{P}$.  Continue to do this until $\mathbf{A}$ is a zero matrix.  The $\lambda_k$'s for $k = 1, \ldots, K$ are positive scalars which sum up to 1.  Clearly, a doubly stochastic matrix can be represented by a convex combination of permutation matrices.\\ 
+
+
+\end{document}
