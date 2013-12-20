@@ -12,7 +12,10 @@
 \maketitle
 
 \section{Nonstandard big-M simplex}
+The nonstandard big-M method without adding artificial variables is quite similar to the simplex method.  The high-level intuition behind it is to be able to begin with an infeasible basic solution and take steps toward achieving a basic feasible solution.  The variables that would be entering the basis would be those that reduce cost, and the fastest way to reduce cost is to make a basic variable non-negative.  Once a BFS is found, then, the standard simplex method is applied to solve for an optimal solution.  If a BFS cannot be found thru this nonstandard big-M method, then, the primal of this problem is infeasible. \\
 
+\noindent
+\textbf{(a)}
 
 \section{Logarithmic barrier}
 
@@ -42,10 +45,21 @@ The proof to demonstrate the strict concavity of the logarithmic barrier problem
 
 \noindent
 \textbf{(b)}
-$(i) \Rightarrow (ii)$.
-Suppose $x^*$ is the unique optimal solution to $P_\mu$.  By duality and optimality, 
+$(iii) \Rightarrow (i)$:  Lemma 9.5\cite{BT} demonstrates that if the KKT conditions are met, $x^*$ is the unique optimal solution to the primal barrier problem.  
+
+$(iii) \Rightarrow (ii)$:  The proof of $(iii) \Rightarrow (i)$ demonstrates that  given the satisfaction of the KKT conditions, $x^*$ is not only the unique optimal solution ot the primal, but also $x^*_j = \mu/s_j^*$.  Note the following:  $\mathbf{s,x > 0}$, $\mathbf{x^*}$ is unique, $s_j^* = x_j^*/\mu$.  Since $\mathbf{s^*} = \frac{1}{\mu} \mathbf{x^*}$ and $\mathbf{x^*}$ is unique, it is clear that the optimal solution of $D_\mu$ is unique in terms of $\mathbf{s}$.  
+
+Under strong duality, $x^*$ and $y^*, s^*$  are optimal solutions to the primal and dual, respectively $\Leftrightarrow x^*$ and $y^*, s^*$ satisfy the KKT conditions. \\
+Therefore, all that is left is to show that the existence of a unique optimal solution, $x^*$ for $P_\mu \Leftrightarrow$ unique optimal solution for $D_\mu$ in terms of $s$.  \\
 
 
 
+\textbf{(e)}
+\begin{thebibliography}{9}
+
+\bibitem{BT}
+Bertsimas, Dimitris \& Tsitsiklis, John N.  Introduction to Linear Optimization.  Athena Scientific \& Dynamic Ideas, LLC, Belmont, MA, 1997. 
+
+\end{thebibliography}
 
 \end{document}
